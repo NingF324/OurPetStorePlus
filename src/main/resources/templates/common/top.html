@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <header th:fragment="header">
+        <div id="Header">
+
+            <div id="Logo">
+                <div id="LogoContent">
+                    <a href="/catalog/index"> <img src="../images/logo-topbar.gif" /></a>
+                </div>
+            </div>
+
+            <div id="Menu">
+                <div id="MenuContent">
+                    <a th:if="${session.account==null}" href="/account/signOnForm">Sign In</a>
+                    <a th:if="(${session.account} != null) and (${!session.authenticated}) " href="/account/signOnForm">Sign In</a>
+                    <a th:if="(${session.account} != null) and (${session.authenticated})" href="/account/signOff">Sign Out</a>
+                    <img th:if="(${session.account} != null) and (${session.authenticated})" align="middle" src="../images/separator.gif" />
+                    <a th:if="(${session.account} != null) and (${session.authenticated})" href="/account/editAccountForm">My Account</a>
+                    <img align="middle" src="../images/separator.gif" />
+                    <a href="../help.html">?</a>
+                </div>
+            </div>
+
+            <div id="Search">
+                <div id="SearchContent">
+                    <form action="searchProductsForm" method="post">
+                        <input type="text" name="keyword" id="keyword" size="14">
+                        <input type="submit" name="searchProducts" value="Search">
+                    </form>
+                    <div id="productAutoComplete">
+                        <ul id="productAutoList">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="QuickLinks">
+                <a href="/catalog/viewCategory?categoryId=FISH"><img src="../images/sm_fish.gif" /></a>
+                <img src="../images/separator.gif" />
+                <a href="/catalog/viewCategory?categoryId=DOGS"><img src="../images/sm_dogs.gif" /></a>
+                <img src="../images/separator.gif" />
+                <a href="/catalog/viewCategory?categoryId=REPTILES"><img src="../images/sm_reptiles.gif" /></a>
+                <img src="../images/separator.gif" />
+                <a href="/catalog/viewCategory?categoryId=CATS"> <img src="../images/sm_cats.gif" /></a>
+                <img src="../images/separator.gif" />
+                <a href="/catalog/viewCategory?categoryId=BIRDS"><img src="../images/sm_birds.gif" /></a>
+            </div>
+        </div>
+    </header>
+</body>
+</html>

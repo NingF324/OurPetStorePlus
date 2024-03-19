@@ -5,12 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+@TableName("inventory")
 @Data
-@TableName("category")
-public class Category {
-    @TableId(value = "catid")
-    private String categoryId;
-    private String name;
-    @TableField("descn")
-    private String description;
+public class ItemQuantity {
+    @TableId(value = "itemid")
+    private String itemId;
+    @TableField("qty")
+    private Integer quantity;
 }
