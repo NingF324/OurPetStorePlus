@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Delete</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>Order Delete</h2>
+    <form action="orderDelete" method="post">
+        <table>
+            <tr>
+                <td>Order ID:</td>
+                <td><input type="text" name="orderId" th:value="${order.orderId}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Order Date:</td>
+                <td><input type="text" name="orderDate" th:value="${order.orderDate}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Order Status:</td>
+                <td><input type="text" name="orderStatus" th:value="${order.orderStatus}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Order Total:</td>
+                <td><input type="text" name="orderTotal" th:value="${order.orderTotal}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Delete"/></td>
+                <td><input type="button" value="Cancel" onclick="window.location.href='orderList'"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

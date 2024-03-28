@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ningf.ourpetstore.persistence.AccountMapper">
+
+    <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Account">
+            <id property="userid" column="userid" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="firstname" column="firstname" jdbcType="VARCHAR"/>
+            <result property="lastname" column="lastname" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="addr1" column="addr1" jdbcType="VARCHAR"/>
+            <result property="addr2" column="addr2" jdbcType="VARCHAR"/>
+            <result property="city" column="city" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="VARCHAR"/>
+            <result property="zip" column="zip" jdbcType="VARCHAR"/>
+            <result property="country" column="country" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        userid,email,firstname,
+        lastname,status,addr1,
+        addr2,city,state,
+        zip,country,phone
+    </sql>
+</mapper>

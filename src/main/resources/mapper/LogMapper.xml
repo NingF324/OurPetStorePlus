@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ningf.ourpetstore.persistence.LogMapper">
+
+    <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Log">
+            <result property="loguserid" column="loguserid" jdbcType="VARCHAR"/>
+            <result property="loginfo" column="loginfo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        loguserid,loginfo
+    </sql>
+</mapper>

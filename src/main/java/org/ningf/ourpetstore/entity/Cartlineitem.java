@@ -1,44 +1,54 @@
 package org.ningf.ourpetstore.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 
- * @TableName profile
+ * @TableName cartlineitem
  */
-@TableName(value ="profile")
+@TableName(value ="cartlineitem")
 @Data
-public class Profile implements Serializable {
+public class Cartlineitem implements Serializable {
+
     /**
      * 
      */
-    @TableId
     private String userid;
 
     /**
      * 
      */
-    private String langpref;
+    private String itemid;
 
     /**
      * 
      */
-    private String favcategory;
+    private Integer quantity;
 
     /**
      * 
      */
-    private Integer mylistopt;
+    private BigDecimal unitprice;
 
     /**
      * 
      */
-    private Integer banneropt;
+    private String productid;
+
+    /**
+     * 
+     */
+    private String description;
+
+    /**
+     * 
+     */
+    private BigDecimal listprice;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

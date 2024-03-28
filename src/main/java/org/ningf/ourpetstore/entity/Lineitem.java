@@ -5,60 +5,41 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import lombok.Data;
 
 /**
  * 
- * @TableName supplier
+ * @TableName lineitem
  */
-@TableName(value ="supplier")
+@TableName(value ="lineitem")
 @Data
-public class Supplier implements Serializable {
+public class Lineitem implements Serializable {
     /**
      * 
      */
     @TableId
-    private Integer suppid;
+    private Integer orderid;
 
     /**
      * 
      */
-    private String name;
+    private Integer linenum;
 
     /**
      * 
      */
-    private String status;
+    private String itemid;
 
     /**
      * 
      */
-    private String addr1;
+    private Integer quantity;
 
     /**
      * 
      */
-    private String addr2;
-
-    /**
-     * 
-     */
-    private String city;
-
-    /**
-     * 
-     */
-    private String state;
-
-    /**
-     * 
-     */
-    private String zip;
-
-    /**
-     * 
-     */
-    private String phone;
+    private BigDecimal unitprice;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

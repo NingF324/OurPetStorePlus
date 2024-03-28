@@ -1,9 +1,29 @@
 package org.ningf.ourpetstore.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import lombok.Data;
+
 /**
- * @description:
- * @author: Lenovo
- * @time: 2024/3/22 8:08
+ * 
+ * @TableName log
  */
-public class Log {
+@TableName(value ="log")
+@Data
+public class Log implements Serializable {
+    /**
+     * 
+     */
+    private String loguserid;
+
+    /**
+     * 
+     */
+    private String loginfo;
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 }

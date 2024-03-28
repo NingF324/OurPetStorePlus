@@ -9,36 +9,21 @@ import lombok.Data;
 
 /**
  * 
- * @TableName profile
+ * @TableName signon
  */
-@TableName(value ="profile")
+@TableName(value ="signon")
 @Data
-public class Profile implements Serializable {
+public class Signon implements Serializable {
     /**
      * 
      */
     @TableId
-    private String userid;
+    private String username;
 
     /**
      * 
      */
-    private String langpref;
-
-    /**
-     * 
-     */
-    private String favcategory;
-
-    /**
-     * 
-     */
-    private Integer mylistopt;
-
-    /**
-     * 
-     */
-    private Integer banneropt;
+    private String password;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ningf.ourpetstore.persistence.CartlineitemMapper">
+
+    <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Cartlineitem">
+            <result property="userid" column="userid" jdbcType="VARCHAR"/>
+            <result property="itemid" column="itemid" jdbcType="VARCHAR"/>
+            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+            <result property="unitprice" column="unitprice" jdbcType="DECIMAL"/>
+            <result property="productid" column="productid" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="listprice" column="listprice" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        userid,itemid,quantity,
+        unitprice,productid,description,
+        listprice
+    </sql>
+</mapper>

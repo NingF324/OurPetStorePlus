@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>Edit Category</h2>
+    <form action="categoryEdit" method="post">
+        <table>
+            <tr>
+                <td>Category ID:</td>
+                <td><input type="text" name="categoryId" th:value="${category.categoryId}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Category Name:</td>
+                <td><input type="text" name="name" th:value="${category.name}"/></td>
+            </tr>
+            <tr>
+                <td>Category Description:</td>
+                <td><input type="text" name="description" th:value="${category.description}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Update Category"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <a href="categoryList">Return to Category List</a>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

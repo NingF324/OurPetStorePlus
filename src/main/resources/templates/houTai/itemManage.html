@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Manage</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="BackLink">
+    <a href="/catalog/index">Return to Main Menu</a>
+</div>
+
+<div id="Catalog">
+    <h2>Item Manage</h2>
+
+    <table>
+        <tr>
+            <th>Item ID</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Picture</th>
+            <th>Product Price</th>
+            <th>Modify</th>
+        </tr>
+        <tr th:each="item:${itemList}">
+            <td th:text="${item.itemId}">1</td>
+            <td th:text="${item.product.name}">Fish</td>
+            <td th:text="${item.product.description}">Fish</td>
+            <td th:text="${item.product.picture}">Fish</td>
+            <td th:text="${item.listPrice}">Fish</td>
+            <td>
+                <a th:href="@{/houTai/itemEdit(itemId=${item.itemId})}">Edit</a>
+                <a th:href="@{/houTai/itemDelete(itemId=${item.itemId})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/houTai/itemNew}">New Item</a>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

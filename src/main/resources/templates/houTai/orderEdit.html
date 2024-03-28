@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Edit</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>Edit Order</h2>
+    <form action="orderEdit" method="post">
+        <table>
+            <tr>
+                <td>Order ID:</td>
+                <td><input type="text" name="orderId" th:value="${order.orderId}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Order Date:</td>
+                <td><input type="text" name="orderDate" th:value="${order.orderDate}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Order Status:</td>
+                <td><input type="text" name="status" th:value="${order.status}"/></td>
+            </tr>
+            <tr>
+                <td>Order Username:</td>
+                <td><input type="text" name="username" th:value="${order.username}"/></td>
+            </tr>
+            <tr>
+                <td>Order Total:</td>
+                <td><input type="text" name="total" th:value="${order.total}"/></td>
+            </tr>
+            <tr>
+                <td>Order Address:</td>
+                <td><input type="text" name="address" th:value="${order.address}"/></td>
+            </tr>
+            <tr>
+                <td>Order Phone:</td>
+                <td><input type="text" name="phone" th:value="${order.phone}"/></td>
+            </tr>
+            <tr>
+                <td>Order Email:</td>
+                <td><input type="text" name="email" th:value="${order.email}"/></td>
+            </tr>
+            <tr>
+                <td>Order Remark:</td>
+                <td><input type="text" name="remark" th:value="${order.remark}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Update Order"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <a href="orderList">Return to Order List</a>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

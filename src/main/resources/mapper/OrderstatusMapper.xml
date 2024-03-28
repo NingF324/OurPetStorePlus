@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ningf.ourpetstore.persistence.OrderstatusMapper">
+
+    <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Orderstatus">
+            <id property="orderid" column="orderid" jdbcType="INTEGER"/>
+            <id property="linenum" column="linenum" jdbcType="INTEGER"/>
+            <result property="timestamp" column="timestamp" jdbcType="DATE"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        orderid,linenum,timestamp,
+        status
+    </sql>
+</mapper>

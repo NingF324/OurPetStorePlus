@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ningf.ourpetstore.persistence.ProfileMapper">
+
+    <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Profile">
+            <id property="userid" column="userid" jdbcType="VARCHAR"/>
+            <result property="langpref" column="langpref" jdbcType="VARCHAR"/>
+            <result property="favcategory" column="favcategory" jdbcType="VARCHAR"/>
+            <result property="mylistopt" column="mylistopt" jdbcType="INTEGER"/>
+            <result property="banneropt" column="banneropt" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        userid,langpref,favcategory,
+        mylistopt,banneropt
+    </sql>
+</mapper>

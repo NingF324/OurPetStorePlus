@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Delete</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>Category Delete</h2>
+    <form action="categoryDelete" method="post">
+        <table>
+            <tr>
+                <td>Category Name:</td>
+                <td><input type="text" name="categoryName" th:value="${category.categoryName}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Category Description:</td>
+                <td><input type="text" name="categoryDescription" th:value="${category.categoryDescription}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Delete"/></td>
+                <td><input type="button" value="Cancel" onclick="window.location.href='categoryList'"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

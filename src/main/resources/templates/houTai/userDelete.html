@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Delete</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>User Delete</h2>
+    <form action="userDelete" method="post">
+        <table>
+            <tr>
+                <td>User ID:</td>
+                <td><input type="text" name="userId" th:value="${user.userId}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username" th:value="${user.username}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="text" name="password" th:value="${user.password}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" th:value="${user.email}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="text" name="phone" th:value="${user.phone}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Address1:</td>
+                <td><input type="text" name="address1" th:value="${user.address1}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Address2:</td>
+                <td><input type="text" name="address2" th:value="${user.address2}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" name="city" th:value="${user.city}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td><input type="text" name="state" th:value="${user.state}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td><input type="text" name="zip" th:value="${user.zip}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td><input type="text" name="country" th:value="${user.country}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Delete"/></td>
+                <td><input type="button" value="Cancel" onclick="window.location.href='/houTai/userManage'"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

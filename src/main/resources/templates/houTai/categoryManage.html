@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>Category Manage</h2>
+    <table border="1">
+        <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            <th>Category Picture</th>
+            <th>Modify</th>
+        </tr>
+        <tr th:each="category : ${categoryList}">
+            <td th:text="${category.categoryId}">1</td>
+            <td th:text="${category.categoryName}">Fish</td>
+            <td th:text="${category.description}">Fish</td>
+            <td th:text="${category.picture}">Fish</td>
+            <td>
+                <a th:href="@{/houTai/categoryEdit(categoryId=${category.categoryId})}">Edit</a>
+                <a th:href="@{/houTai/categoryDelete(categoryId=${category.categoryId})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/houTai/categoryNew}">New Category</a>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

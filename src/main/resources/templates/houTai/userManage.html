@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/index">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <h2>User Manage</h2>
+
+        <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Phone</th>
+            <th>Address1</th>
+            <th>Address2</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Country</th>
+            <th>Modify</th>
+        </tr>
+        <tr th:each="user:${users.userList}">
+            <td th:text="${user.userId}">1</td>
+            <td th:text="${user.username}">Fish</td>
+            <td th:text="${user.password}">Fish</td>
+            <td th:text="${user.email}">Fish</td>
+            <td th:text="${user.phone}">Fish</td>
+            <td th:text="${user.address1}">Fish</td>
+            <td th:text="${user.address2}">Fish</td>
+            <td th:text="${user.city}">Fish</td>
+            <td th:text="${user.state}">Fish</td>
+            <td th:text="${user.zip}">Fish</td>
+            <td th:text="${user.country}">Fish</td>
+            <td>
+            <a th:href="@{/houTai/userEdit(userId=${user.userId})}">Edit</a>
+            <a th:href="@{/houTai/userDelete(userId=${user.userId})}">Delete</a>
+            </td>
+        </tr>
+        </table>
+        <a th:href="@{/houTai/userNew}">New User</a>
+        </div>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

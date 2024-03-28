@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ningf.ourpetstore.persistence.SequenceMapper">
+
+    <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Sequence">
+            <id property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="nextid" column="nextid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        name,nextid
+    </sql>
+</mapper>
