@@ -2,39 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Product Edit</title>
+    <title>Item Manage</title>
     <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
 </head>
 <body>
 <header th:replace="common/adminTop"></header>
 <div id="Content">
-<h2>Edit Product</h2>
-    <form action="houTai/productEdit" method="post">
+    <h2>Create Product</h2>
+    <form action="houTai/productCreate" method="post">
         <table>
             <tr>
                 <td>Product ID:</td>
-                <td><input type="text" name="productId" th:value="${product.productId}"/></td>
+                <td><input type="text" name="productId" value=""/></td>
             </tr>
             <tr>
                 <td>Category ID:</td>
-                <td><input type="text" name="categoryId" th:value="${product.categoryId}"/></td>
+                <td><input type="text" name="categoryId" value=""/></td>
             </tr>
             <tr>
                 <td>Product Name:</td>
-                <td><input type="text" name="name" th:value="${product.productName}"/></td>
+                <td><input type="text" name="name" value=""/></td>
             </tr>
             <tr>
                 <td>Product Description:</td>
-                <td><input type="text" name="description" th:value="${product.description}"/></td>
+                <td><input type="text" name="description" value=""/></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Update Product"/>
+                    <input type="submit" value="Create Product"/>
                 </td>
             </tr>
         </table>
     </form>
-    <a href="productList">Return to Product List</a>
 </div>
 <footer th:replace="common/adminBottom"></footer>
 </body>

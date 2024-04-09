@@ -13,11 +13,11 @@
         <table>
             <tr>
                 <td>Item ID:</td>
-                <td><input type="text" name="itemId" th:value="${item.itemId}" readonly="readonly"/></td>
+                <td><input type="text" name="itemId" th:value="${item.itemId}" /></td>
             </tr>
             <tr>
                 <td>Product ID:</td>
-                <td><input type="text" name="productId" th:value="${item.productId}" readonly="readonly"/></td>
+                <td><input type="text" name="productId" th:value="${item.productId}" /></td>
             </tr>
             <tr>
                 <td>List Price:</td>
@@ -29,31 +29,11 @@
             </tr>
             <tr>
                 <td>Supplier:</td>
-                <td><input type="text" name="supplier" th:value="${item.supplier}"/></td>
+                <td><input type="text" name="supplier" th:value="${item.supplierId}"/></td>
             </tr>
             <tr>
                 <td>Status:</td>
                 <td><input type="text" name="status" th:value="${item.status}"/></td>
-            </tr>
-            <tr>
-                <td>Attribute1:</td>
-                <td><input type="text" name="attribute1" th:value="${item.attribute1}"/></td>
-            </tr>
-            <tr>
-                <td>Attribute2:</td>
-                <td><input type="text" name="attribute2" th:value="${item.attribute2}"/></td>
-            </tr>
-            <tr>
-                <td>Attribute3:</td>
-                <td><input type="text" name="attribute3" th:value="${item.attribute3}"/></td>
-            </tr>
-            <tr>
-                <td>Attribute4:</td>
-                <td><input type="text" name="attribute4" th:value="${item.attribute4}"/></td>
-            </tr>
-            <tr>
-                <td>Attribute5:</td>
-                <td><input type="text" name="attribute5" th:value="${item.attribute5}"/></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Edit"/></td>

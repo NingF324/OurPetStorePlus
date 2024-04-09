@@ -7,6 +7,7 @@
 </head>
 <body>
 <header th:replace="common/adminTop"></header>
+<div id="Content">
 <div id="BackLink">
     <a href="/catalog/index">Return to Main Menu</a>
 </div>
@@ -17,31 +18,28 @@
     <table>
         <tr>
             <th>Item ID</th>
-            <th>Product Name</th>
-            <th>Product Description</th>
-            <th>Product Picture</th>
-            <th>Product Price</th>
+            <th>Product ID</th>
+            <th>ListPrice</th>
+            <th>UnitCost</th>
+            <th>Status</th>
+            <th>SupplierId</th>
             <th>Modify</th>
         </tr>
-        <tr th:each="item:${itemList}">
+        <tr th:each="item:${product.itemList}">
             <td th:text="${item.itemId}">1</td>
             <td th:text="${item.productId}">Fish</td>
             <td th:text="${item.listPrice}">Fish</td>
+            <td th:text="${item.unitCost}">Fish</td>
             <td th:text="${item.status}">Fish</td>
-            <td th:text="${item.quantity}">Fish</td>
             <td th:text="${item.supplierId}">Fish</td>
-            <td th:text="${item.attribute1}">Fish</td>
-            <td th:text="${item.attribute2}">Fish</td>
-            <td th:text="${item.attribute3}">Fish</td>
-            <td th:text="${item.attribute4}">Fish</td>
-            <td th:text="${item.attribute5}">Fish</td>
             <td>
-                <a th:href="@{/houTai/itemEdit(itemId=${item.itemId})}">Edit</a>
-                <a th:href="@{/houTai/itemDelete(itemId=${item.itemId})}">Delete</a>
+                <a th:href="@{/houTai/itemEditForm(itemId=${item.itemId})}">Edit</a>
+                <a th:href="@{/houTai/itemDeleteForm(itemId=${item.itemId})}">Delete</a>
             </td>
         </tr>
     </table>
-    <a th:href="@{/houTai/itemNew}">New Item</a>
+    <a th:href="@{/houTai/itemNewForm}">New Item</a>
+</div>
 </div>
 <footer th:replace="common/adminBottom"></footer>
 </body>

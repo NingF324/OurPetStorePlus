@@ -19,24 +19,24 @@
         <table>
         <tr>
             <th>Product ID</th>
-            <th>Category</th>
             <th>Product Name</th>
             <th>Product Description</th>
             <th>Product Picture</th>
             <th>Modify</th>
         </tr>
-        <tr th:each="product:${productList}">
+        <tr th:each="product:${category.productList}">
             <td th:text="${product.productId}">1</td>
             <td th:text="${product.categoryId}">Fish</td>
             <td th:text="${product.name}">Fish</td>
             <td th:text="${product.description}">Fish</td>
             <td>
-            <a th:href="@{/houTai/productEdit(productId=${product.productId})}">Edit</a>
-            <a th:href="@{/houTai/productDelete(productId=${product.productId})}">Delete</a>
+            <a th:href="@{/houTai/productEditForm(productId=${product.productId})}">Edit</a>
+            <a th:href="@{/houTai/productDeleteForm(productId=${product.productId})}">Delete</a>
+                <a th:href="@{/houTai/itemManage(productId=${product.productId})}">Items</a>
             </td>
         </tr>
         </table>
-        <a th:href="@{/houTai/productNew}">New Product</a>
+        <a th:href="@{/houTai/productNewForm}">New Product</a>
     </div>
 </div>
 <footer th:replace="common/adminBottom"></footer>

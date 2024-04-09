@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+  <h2>Create Item</h2>
+  <form action="houTai/itemCreate" method="post">
+    <table>
+      <tr>
+        <td>Item ID:</td>
+        <td><input type="text" name="itemId" value="" /></td>
+      </tr>
+      <tr>
+        <td>Product ID:</td>
+        <td><input type="text" name="productId" value="" /></td>
+      </tr>
+      <tr>
+        <td>List Price:</td>
+        <td><input type="text" name="listPrice" value="" /></td>
+      </tr>
+      <tr>
+        <td>Unit Cost:</td>
+        <td><input type="text" name="unitCost" value="" /></td>
+      </tr>
+      <tr>
+        <td>Supplier:</td>
+        <td><input type="text" name="supplier" value="" /></td>
+      </tr>
+      <tr>
+        <td>Status:</td>
+        <td><input type="text" name="status" value="" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" value="Create Item"/>
+        </td>
+      </tr>
+    </table>
+    </form>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

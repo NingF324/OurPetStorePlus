@@ -9,7 +9,7 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Edit Product</h2>
-    <form action="productEdit" method="post">
+    <form action="houTai/productEdit" method="post">
         <table>
             <tr>
                 <td>Product ID:</td>
@@ -21,28 +21,18 @@
             </tr>
             <tr>
                 <td>Product Name:</td>
-                <td><input type="text" name="name" th:value="${product.name}"/></td>
+                <td><input type="text" name="name" th:value="${product.productName}"/></td>
             </tr>
             <tr>
                 <td>Product Description:</td>
                 <td><input type="text" name="description" th:value="${product.description}"/></td>
             </tr>
             <tr>
-                <td>Product Picture:</td>
-                <td><input type="text" name="picture" th:value="${product.picture}"/></td>
-            </tr>
-            <tr>
-                <td>Product Price:</td>
-                <td><input type="text" name="price" th:value="${product.price}"/></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Update Product"/>
-                </td>
+                <td><input type="submit" value="Delete"/></td>
+                <td><input type="button" value="Cancel" onclick="window.location.href='/houTai/productManage'"/></td>
             </tr>
         </table>
     </form>
-    <a href="productList">Return to Product List</a>
 </div>
 <footer th:replace="common/adminBottom"></footer>
 </body>

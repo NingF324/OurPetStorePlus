@@ -9,7 +9,7 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Item Delete</h2>
-    <form action="itemDelete" method="post">
+    <form action="houTai/itemDelete" method="post">
         <table>
             <tr>
                 <td>Item ID:</td>
@@ -28,14 +28,6 @@
                 <td><input type="text" name="supplierId" th:value="${item.supplierId}" readonly="readonly"/></td>
             </tr>
             <tr>
-                <td>Category ID:</td>
-                <td><input type="text" name="categoryId" th:value="${item.categoryId}" readonly="readonly"/></td>
-            </tr>
-            <tr>
-                <td>Item Name:</td>
-                <td><input type="text" name="itemName" th:value="${item.itemName}" readonly="readonly"/></td>
-            </tr>
-            <tr>
                 <td>List Price:</td>
                 <td><input type="text" name="listPrice" th:value="${item.listPrice}" readonly="readonly"/></td>
             </tr>
@@ -45,15 +37,14 @@
             </tr>
             <tr>
                 <td>Supplier:</td>
-                <td><input type="text" name="supplier" th:value="${item.supplier}" readonly="readonly"/></td>
+                <td><input type="text" name="supplier" th:value="${item.supplierId}" readonly="readonly"/></td>
             </tr>
             <tr>
-                <td>Attribute1:</td>
-                <td><input type="text" name="attribute1" th:value="${item.attribute1}" readonly="readonly"/></td>
+                <td><input type="submit" value="Delete"/></td>
+                <td><input type="button" value="Cancel" onclick="window.location.href='/houTai/itemManage'"/></td>
             </tr>
-            <tr>
-                <td>Attribute2:</td>
-                <td><input type="text" name="attribute2" th:value="${item.attribute2}" readonly="readonly"/></td>
+        </table>
+    </form>
 </div>
 <footer th:replace="common/adminBottom"></footer>
 </body>

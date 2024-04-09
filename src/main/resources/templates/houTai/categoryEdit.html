@@ -9,19 +9,15 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Edit Category</h2>
-    <form action="categoryEdit" method="post">
+    <form action="houTai/categoryEdit" method="post">
         <table>
             <tr>
                 <td>Category ID:</td>
-                <td><input type="text" name="categoryId" th:value="${category.categoryId}" readonly="readonly"/></td>
+                <td><input type="text" name="categoryId" th:value="${category.categoryId}"/></td>
             </tr>
             <tr>
                 <td>Category Name:</td>
-                <td><input type="text" name="name" th:value="${category.name}"/></td>
-            </tr>
-            <tr>
-                <td>Category Description:</td>
-                <td><input type="text" name="description" th:value="${category.description}"/></td>
+                <td><input type="text" name="name" th:value="${category.categoryName}"/></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
