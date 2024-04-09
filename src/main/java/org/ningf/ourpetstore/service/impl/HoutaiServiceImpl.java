@@ -85,4 +85,19 @@ public class HoutaiServiceImpl implements HouTaiService {
         usersVO.setUserList(userList);
         return usersVO;
     }
+
+    @Override
+    public void deleteUser(String userId) {
+
+    }
+
+    @Override
+    public void updateUser(UserVO userVO) {
+
+    }
+
+    @Override
+    public void createUser(UserVO userVO) {
+
+    }
 }

@@ -25,10 +25,16 @@
         </tr>
         <tr th:each="item:${itemList}">
             <td th:text="${item.itemId}">1</td>
-            <td th:text="${item.product.name}">Fish</td>
-            <td th:text="${item.product.description}">Fish</td>
-            <td th:text="${item.product.picture}">Fish</td>
+            <td th:text="${item.productId}">Fish</td>
             <td th:text="${item.listPrice}">Fish</td>
+            <td th:text="${item.status}">Fish</td>
+            <td th:text="${item.quantity}">Fish</td>
+            <td th:text="${item.supplierId}">Fish</td>
+            <td th:text="${item.attribute1}">Fish</td>
+            <td th:text="${item.attribute2}">Fish</td>
+            <td th:text="${item.attribute3}">Fish</td>
+            <td th:text="${item.attribute4}">Fish</td>
+            <td th:text="${item.attribute5}">Fish</td>
             <td>
                 <a th:href="@{/houTai/itemEdit(itemId=${item.itemId})}">Edit</a>
                 <a th:href="@{/houTai/itemDelete(itemId=${item.itemId})}">Delete</a>

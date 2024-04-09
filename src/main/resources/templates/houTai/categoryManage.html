@@ -13,18 +13,57 @@
         <tr>
             <th>Category ID</th>
             <th>Category Name</th>
-            <th>Category Description</th>
             <th>Category Picture</th>
             <th>Modify</th>
         </tr>
-        <tr th:each="category : ${categoryList}">
-            <td th:text="${category.categoryId}">1</td>
-            <td th:text="${category.categoryName}">Fish</td>
-            <td th:text="${category.description}">Fish</td>
-            <td th:text="${category.picture}">Fish</td>
+        <tr >
+            <td >BIRDS</td>
+            <td >Birds</td>
+            <td ><img src="../images/birds_icon.gif"></td>
             <td>
                 <a th:href="@{/houTai/categoryEdit(categoryId=${category.categoryId})}">Edit</a>
                 <a th:href="@{/houTai/categoryDelete(categoryId=${category.categoryId})}">Delete</a>
+                <a th:href="@{/houTai/ProductManage(categoryId=${category.categoryId})}">Products</a>
+            </td>
+        </tr>
+        <tr >
+            <td >FISH</td>
+            <td >Fish</td>
+            <td ><img src="../images/fish_icon.gif"></td>
+            <td>
+                <a th:href="@{/houTai/categoryEdit(categoryId=${category.categoryId})}">Edit</a>
+                <a th:href="@{/houTai/categoryDelete(categoryId=${category.categoryId})}">Delete</a>
+                <a th:href="@{/houTai/ProductManage(categoryId=${category.categoryId})}">Products</a>
+            </td>
+        </tr>
+        <tr >
+            <td >DOGS</td>
+            <td >Dogs</td>
+            <td ><img src="../images/dogs_icon.gif"></td>
+            <td>
+                <a th:href="@{/houTai/categoryEdit(categoryId=${category.categoryId})}">Edit</a>
+                <a th:href="@{/houTai/categoryDelete(categoryId=${category.categoryId})}">Delete</a>
+                <a th:href="@{/houTai/ProductManage(categoryId=${category.categoryId})}">Products</a>
+            </td>
+        </tr>
+        <tr >
+            <td >CATS</td>
+            <td >Cats</td>
+            <td ><img src="../images/cats_icon.gif"></td>
+            <td>
+                <a th:href="@{/houTai/categoryEdit(categoryId=${category.categoryId})}">Edit</a>
+                <a th:href="@{/houTai/categoryDelete(categoryId=${category.categoryId})}">Delete</a>
+                <a th:href="@{/houTai/ProductManage(categoryId=${category.categoryId})}">Products</a>
+            </td>
+        </tr>
+        <tr >
+            <td >REPTILES</td>
+            <td >Reptiles</td>
+            <td ><img src="../images/reptiles_icon.gif"></td>
+            <td>
+                <a th:href="@{/houTai/categoryEdit(categoryId=${category.categoryId})}">Edit</a>
+                <a th:href="@{/houTai/categoryDelete(categoryId=${category.categoryId})}">Delete</a>
+                <a th:href="@{/houTai/ProductManage(categoryId=${category.categoryId})}">Products</a>
             </td>
         </tr>
     </table>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>Edit User</h2>
+    <form action="houTai/userCreate" method="post">
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username" value=""/></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="text" name="password" value=""/></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" value=""/></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="text" name="phone" value=""/></td>
+            </tr>
+            <tr>
+                <td>Address1:</td>
+                <td><input type="text" name="address1" value=""/></td>
+            </tr>
+            <tr>
+                <td>Address2:</td>
+                <td><input type="text" name="address2" value=""/></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" name="city" value=""/></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td><input type="text" name="state" value=""/></td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td><input type="text" name="zip" value=""/></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td><input type="text" name="country" value=""/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Create User"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

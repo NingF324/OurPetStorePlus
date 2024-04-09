@@ -27,10 +27,9 @@
         </tr>
         <tr th:each="product:${productList}">
             <td th:text="${product.productId}">1</td>
-            <td th:text="${product.category.categoryName}">Fish</td>
+            <td th:text="${product.categoryId}">Fish</td>
             <td th:text="${product.name}">Fish</td>
             <td th:text="${product.description}">Fish</td>
-            <td th:text="${product.picture}">Fish</td>
             <td>
             <a th:href="@{/houTai/productEdit(productId=${product.productId})}">Edit</a>
             <a th:href="@{/houTai/productDelete(productId=${product.productId})}">Delete</a>

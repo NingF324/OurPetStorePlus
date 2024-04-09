@@ -1,6 +1,8 @@
 package org.ningf.ourpetstore.controller;
 
+import org.ningf.ourpetstore.service.CatalogService;
 import org.ningf.ourpetstore.service.HouTaiService;
+import org.ningf.ourpetstore.vo.CategoryVO;
 import org.ningf.ourpetstore.vo.UserVO;
 import org.ningf.ourpetstore.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HouTaiController {
     @Autowired
     private HouTaiService houTaiService;
+
+    @Autowired
+    private CatalogService catalogService;
 
     @GetMapping("loginForm")
     public String loginForm() {
@@ -59,18 +64,39 @@ public class HouTaiController {
         return "houTai/itemManage";
     }
 
-    @GetMapping("userDelete")
-    public String userDelete(String userId, Model model) {
+
+
+    @GetMapping("userDeleteForm")
+    public String userDeleteForm(String userId, Model model) {
         UserVO  userVO = houTaiService.getUserById(userId);
         model.addAttribute("user", userVO);
         return "houTai/userDelete";
     }
-
-    @GetMapping("userEdit")
-    public String userEdit(String userId, Model model) {
+    @GetMapping("userEditForm")
+    public String userEditForm(String userId, Model model) {
         // 根据userId执行相应的逻辑，比如查询用户信息等
         UserVO  userVO = houTaiService.getUserById(userId);
         model.addAttribute("user", userVO);
         return "houTai/userEdit"; // 返回相应的视图名称
     }
+    @GetMapping("userNewForm")
+    public String userNewForm() {
+        return "houTai/userNew";
+    }
+
+    @GetMapping("userDelete")
+    public void userDelete(String userId) {
+        houTaiService.deleteUser(userId);
+    }
+
+    @GetMapping("userEdit")
+    public void userEdit(UserVO userVO) {
+        houTaiService.updateUser(userVO);
+    }
+
+    @GetMapping("userCreate")
+    public void userCreate(UserVO userVO) {
+        houTaiService.createUser(userVO);
+    }
+
 }
