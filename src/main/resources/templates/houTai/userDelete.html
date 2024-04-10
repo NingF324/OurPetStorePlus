@@ -9,15 +9,19 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>User Delete</h2>
-    <form action="houTai/userDelete" method="post">
+    <form action="/houTai/userDelete" method="post">
         <table>
             <tr>
                 <td>User ID:</td>
                 <td><input type="text" name="userId" th:value="${user.userId}" readonly="readonly"/></td>
             </tr>
             <tr>
-                <td>Username:</td>
-                <td><input type="text" name="username" th:value="${user.username}" readonly="readonly"/></td>
+                <td>Firstname:</td>
+                <td><input type="text" name="firstname" th:value="${user.firstname}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Lastname:</td>
+                <td><input type="text" name="lastname" th:value="${user.lastname}" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td>Password:</td>

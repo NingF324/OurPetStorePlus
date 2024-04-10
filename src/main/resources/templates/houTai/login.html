@@ -13,34 +13,15 @@
             <p>Please enter your username and password.</p>
                 <p th:if="${session.signOnMsg != null}"> <font color="red">${session.signOnMsg} </font> </p>
             <p>
-                Username:<input type="text" name="username"> <br />
-                Password:<input type="password" name="password">
+                Username:<input type="text" name="adminname"> <br />
+                Password:<input type="password" name="adminpassword">
             </p>
-            <span class="require"></span>validation code:
-            <input type="text" id="validation_code" name="validation_code" /><!--验证码输入框-->
-            <img src="validation_code" id="img_validation_code"
-                 onclick="refresh()" /><!--图形验证码--><br />
-            <input type="button" value="login" onclick="checkRegister()" />
+            <input type="submit" value="login" />
         </form>
         Need a username and password?
         <a href="/houTai/registerForm">Register Now!</a>
 
     </div>
-    <script type="text/javascript">
-        function refresh() {
-            var img = document.getElementById("img_validation_code");
-            img.src = "validation_code?" + Math.random();
-        }
-        //实现验证码的刷新
-        function checkRegister() {
-            var validation_code = document.getElementById("validation_code");
-            if (validation_code.value == "") {
-                alert("Validation code is required.");
-                return;
-            }
-            document.login_form.submit();
-        }
-    </script>
 
 </div>
 <footer th:replace="common/adminBottom"></footer>

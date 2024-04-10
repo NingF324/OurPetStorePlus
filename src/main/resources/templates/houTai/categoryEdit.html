@@ -9,7 +9,7 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Edit Category</h2>
-    <form action="houTai/categoryEdit" method="post">
+    <form action="/houTai/categoryEdit" method="post">
         <table>
             <tr>
                 <td>Category ID:</td>
@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <td>Category Name:</td>
-                <td><input type="text" name="name" th:value="${category.categoryName}"/></td>
+                <td><input type="text" name="categoryName" th:value="${category.categoryName}"/></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">

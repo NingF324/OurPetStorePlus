@@ -19,39 +19,30 @@
         <table>
             <tr>
                 <th>Order ID</th>
-                <th>Username</th>
+                <th>User ID</th>
                 <th>Order Date</th>
-                <th>Ship Address</th>
+                <th>Ship Address1</th>
                 <th>Ship City</th>
                 <th>Ship State</th>
                 <th>Ship Zip</th>
                 <th>Ship Country</th>
-                <th>Bill Address</th>
-                <th>Bill City</th>
-                <th>Bill State</th>
-                <th>Bill Zip</th>
-                <th>Bill Country</th>
                 <th>Total Price</th>
                 <th>Modify</th>
             </tr>
-            <tr th:each="order:${orderList}">
-                <td th:text="${order.orderId}">1</td>
-                <td th:text="${order.username}">Username</td>
-                <td th:text="${order.orderDate}">Order Date</td>
-                <td th:text="${order.shipAddress1}">Ship Address</td>
-                <td th:text="${order.shipCity}">Ship City</td>
-                <td th:text="${order.shipState}">Ship State</td>
-                <td th:text="${order.shipZip}">Ship Zip</td>
-                <td th:text="${order.shipCountry}">Ship Country</td>
-                <td th:text="${order.billAddress1}">Bill Address</td>
-                <td th:text="${order.billCity}">Bill City</td>
-                <td th:text="${order.billState}">Bill State</td>
-                <td th:text="${order.billZip}">Bill Zip</td>
-                <td th:text="${order.billCountry}">Bill Country</td>
-                <td th:text="${order.totalPrice}">Total Price</td>
+            <tr th:each="order:${orders.ordersList}">
+                <td th:text="${order.orderid}">1</td>
+                <td th:text="${order.userid}">Username</td>
+                <td th:text="${order.orderdate}">Order Date</td>
+                <td th:text="${order.shipaddr1}">Ship Address</td>
+                <td th:text="${order.shipcity}">Ship State</td>
+                <td th:text="${order.shipstate}">Ship Zip</td>
+                <td th:text="${order.shipzip}">Ship Country</td>
+                <td th:text="${order.shipcountry}">Bill Address</td>
+                <td th:text="${order.totalprice}">Total Price</td>
                 <td>
-                    <a th:href="@{/houTai/orderEdit(orderId=${order.orderId})}">Edit</a>
-                    <a th:href="@{/houTai/orderDelete(orderId=${order.orderId})}">Delete</a>
+                    <a th:href="@{/houTai/orderView(orderId=${order.orderid})}">More</a>
+                    <a th:href="@{/houTai/orderEditForm(orderId=${order.orderid})}">Edit</a>
+                    <a th:href="@{/houTai/orderDeleteForm(orderId=${order.orderid})}">Delete</a>
                 </td>
             </tr>
         </table>

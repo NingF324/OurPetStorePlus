@@ -9,11 +9,19 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Create User</h2>
-    <form action="houTai/userCreate" method="post">
+    <form action="/houTai/userCreate" method="post">
         <table>
             <tr>
-                <td>Username:</td>
-                <td><input type="text" name="username" value=""/></td>
+                <td>User ID:</td>
+                <td><input type="text" name="userid" value=""/></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="firstname" value=""/></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="lastname" value=""/></td>
             </tr>
             <tr>
                 <td>Password:</td>

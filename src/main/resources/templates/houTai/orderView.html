@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Edit</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/adminTop"></header>
+<div id="Content">
+    <h2>Order Information</h2>
+    <table>
+        <tr>
+            <td>Order ID:</td>
+            <td><input type="text" name="orderId" th:value="${order.orderid}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>User ID:</td>
+            <td><input type="text" name="userid" th:value="${order.userid}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Order Date:</td>
+            <td><input type="text" name="orderDate" th:value="${order.orderdate}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship Address1:</td>
+            <td><input type="text" name="shipaddr1" th:value="${order.shipaddr1}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship Address2:</td>
+            <td><input type="text" name="shipaddr2" th:value="${order.shipaddr2}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship City:</td>
+            <td><input type="text" name="shipcity" th:value="${order.shipcity}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship State:</td>
+            <td><input type="text" name="shipstate" th:value="${order.shipstate}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship Zip:</td>
+            <td><input type="text" name="shipzip" th:value="${order.shipzip}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship Country:</td>
+            <td><input type="text" name="shipcountry" th:value="${order.shipcountry}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill Address1:</td>
+            <td><input type="text" name="billaddr1" th:value="${order.billaddr1}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill Address2:</td>
+            <td><input type="text" name="billaddr2" th:value="${order.billaddr2}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill City:</td>
+            <td><input type="text" name="billcity" th:value="${order.billcity}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill State:</td>
+            <td><input type="text" name="billstate" th:value="${order.billstate}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill Zip:</td>
+            <td><input type="text" name="billzip" th:value="${order.billzip}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill Country:</td>
+            <td><input type="text" name="billcountry" th:value="${order.billcountry}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Courier</td>
+            <td><input type="text" name="courier" th:value="${order.courier}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Order Total:</td>
+            <td><input type="text" name="totalprice" th:value="${order.totalprice}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill Firstname:</td>
+            <td><input type="text" name="status" th:value="${order.billtofirstname}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Bill Lastname:</td>
+            <td><input type="text" name="status" th:value="${order.billtolastname}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship Firstname:</td>
+            <td><input type="text" name="status" th:value="${order.shiptofirstname}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Ship Lastname:</td>
+            <td><input type="text" name="status" th:value="${order.shiptolastname}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Credit Card:</td>
+            <td><input type="text" name="status" th:value="${order.creditcard}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Expiry Date:</td>
+            <td><input type="text" name="status" th:value="${order.exprdate}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Card Type:</td>
+            <td><input type="text" name="status" th:value="${order.cardtype}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Locale:</td>
+            <td><input type="text" name="status" th:value="${order.locale}" readonly="readonly"/></td>
+        </tr>
+    </table>
+    <a href="/houTai/orderDelivery">Delivery</a><br>
+    <a href="/houTai/orderManage">Return to Order List</a>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>

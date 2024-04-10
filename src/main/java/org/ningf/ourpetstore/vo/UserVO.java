@@ -10,7 +10,8 @@ import lombok.Data;
 @Data
 public class UserVO {
     private String userId;
-    private String username;
+    private String firstname;
+    private String lastname;
     private String password;
     private String email;
     private String phone;

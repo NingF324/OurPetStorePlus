@@ -19,7 +19,8 @@
         <table>
         <tr>
             <th>User ID</th>
-            <th>Username</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
             <th>Email</th>
             <th>Password</th>
             <th>Phone</th>
@@ -33,7 +34,8 @@
         </tr>
         <tr th:each="user:${users.userList}">
             <td th:text="${user.userId}">1</td>
-            <td th:text="${user.username}">Fish</td>
+            <td th:text="${user.firstname}">Fish</td>
+            <td th:text="${user.lastname}">Fish</td>
             <td th:text="${user.password}">Fish</td>
             <td th:text="${user.email}">Fish</td>
             <td th:text="${user.phone}">Fish</td>

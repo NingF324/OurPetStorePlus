@@ -1,14 +1,13 @@
 package org.ningf.ourpetstore.controller;
 
+import org.ningf.ourpetstore.entity.Orders;
 import org.ningf.ourpetstore.service.CatalogService;
 import org.ningf.ourpetstore.service.HouTaiService;
 import org.ningf.ourpetstore.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @description:
@@ -30,10 +29,32 @@ public class HouTaiController {
         return "houTai/login";
     }
 
+    @PostMapping("login")
+    public String login(@RequestParam("adminname") String adminname, @RequestParam("adminpassword") String adminpassword) {
+        boolean login = houTaiService.login(adminname, adminpassword);
+        if (login) {
+            return "houTai/categoryManage";
+        } else {
+            return "houTai/login";
+        }
+    }
+
     @GetMapping("registerForm")
     public String registerForm() {
         return "houTai/register";
     }
+
+    @PostMapping("register")
+    public String register(@RequestParam("adminname") String adminname, @RequestParam("adminpassword") String adminpassword) {
+        // 处理注册逻辑
+        boolean login = houTaiService.register(adminname, adminpassword);
+        if (login) {
+            return "houTai/login";
+        } else {
+            return "houTai/register";
+        }
+    }
+
 
     @GetMapping("userManage")
     public String userManage(Model model) {
@@ -54,6 +75,13 @@ public class HouTaiController {
         return "houTai/categoryEdit";
     }
 
+    @PostMapping("categoryEdit")
+    public String categoryEdit(@ModelAttribute("CategoryVO") CategoryVO categoryVO) {
+        System.out.println("id:" + categoryVO.getCategoryId());
+        houTaiService.categoryEdit(categoryVO);
+        return "houTai/categoryManage";
+    }
+
     @GetMapping("categoryDeleteForm")
     public String categoryDeleteForm(String categoryId, Model model) {
         CategoryVO categoryVO = catalogService.getCategory(categoryId);
@@ -61,14 +89,61 @@ public class HouTaiController {
         return "houTai/categoryDelete";
     }
 
+    @PostMapping("categoryDelete")
+    public String categoryDelete(String categoryId) {
+        catalogService.deleteCategory(categoryId);
+        return "houTai/categoryManage";
+    }
+
     @GetMapping("categoryNewForm")
     public String categoryNewForm() {
         return "houTai/categoryNew";
     }
 
+    @PostMapping("categoryCreate")
+    public String categoryCreate(CategoryVO categoryVO) {
+        catalogService.createCategory(categoryVO);
+        return "houTai/categoryManage";
+    }
+
     @GetMapping("orderManage")
-    public String orderManage() {
+    public String orderManage(Model model) {
+        OrdersVO orders = houTaiService.getOrders();
+        model.addAttribute("orders", orders);
         return "houTai/orderManage";
+    }
+
+    @GetMapping("orderEditForm")
+    public String orderEditForm(String orderId, Model model) {
+        Orders orders = houTaiService.getOrderById(orderId);
+        model.addAttribute("order", orders);
+        return "houTai/orderEdit";
+    }
+
+    @PostMapping("orderEdit")
+    public String orderEdit(Orders orders) {
+        houTaiService.updateOrder(orders);
+        return "houTai/orderManage";
+    }
+
+    @GetMapping("orderDeleteForm")
+    public String orderDeleteForm(String orderId, Model model) {
+        Orders orders = houTaiService.getOrderById(orderId);
+        model.addAttribute("order", orders);
+        return "houTai/orderDelete";
+    }
+
+    @PostMapping("orderDelete")
+    public String orderDelete(String orderId) {
+        houTaiService.deleteOrder(orderId);
+        return "houTai/orderManage";
+    }
+
+    @GetMapping("orderView")
+    public String orderView(String orderId, Model model) {
+        Orders orders = houTaiService.getOrderById(orderId);
+        model.addAttribute("order", orders);
+        return "houTai/orderView";
     }
 
     @GetMapping("productManage")
@@ -85,6 +160,12 @@ public class HouTaiController {
         return "houTai/productEdit";
     }
 
+    @PostMapping("productEdit")
+    public String productEdit(ProductVO productVO) {
+        catalogService.updateProduct(productVO);
+        return "houTai/productManage";
+    }
+
     @GetMapping("productDeleteForm")
     public String productDeleteForm(String productId, Model model) {
         ProductVO productVO = catalogService.getProduct(productId);
@@ -92,9 +173,21 @@ public class HouTaiController {
         return "houTai/productDelete";
     }
 
+    @PostMapping("productDelete")
+    public String productDelete(String productId) {
+        catalogService.deleteProduct(productId);
+        return "houTai/productManage";
+    }
+
     @GetMapping("productNewForm")
     public String productNewForm() {
         return "houTai/productNew";
+    }
+
+    @PostMapping("productCreate")
+    public String productCreate(ProductVO productVO) {
+        catalogService.createProduct(productVO);
+        return "houTai/productManage";
     }
 
     @GetMapping("itemManage")
@@ -111,6 +204,12 @@ public class HouTaiController {
         return "houTai/itemEdit"; // 返回相应的视图名称
     }
 
+    @PostMapping("itemEdit")
+    public String itemEdit(ItemVO itemVO) {
+        catalogService.updateItem(itemVO);
+        return "houTai/itemManage";
+    }
+
     @GetMapping("itemDeleteForm")
     public String itemDeleteForm(String itemId, Model model) {
         ItemVO itemVO = catalogService.getItem(itemId);
@@ -118,11 +217,22 @@ public class HouTaiController {
         return "houTai/itemDelete";
     }
 
-    @GetMapping("itemNewForm")
-        public String itemNewForm() {
-                return "houTai/itemNew";
-        }
+    @PostMapping("itemDelete")
+    public String itemDelete(String itemId) {
+        catalogService.deleteItem(itemId);
+        return "houTai/itemManage";
+    }
 
+    @GetMapping("itemNewForm")
+    public String itemNewForm() {
+        return "houTai/itemNew";
+    }
+
+    @PostMapping("itemCreate")
+    public String itemCreate(ItemVO itemVO) {
+        catalogService.createItem(itemVO);
+        return "houTai/itemManage";
+    }
 
     @GetMapping("userDeleteForm")
     public String userDeleteForm(String userId, Model model) {
@@ -144,17 +254,17 @@ public class HouTaiController {
         return "houTai/userNew";
     }
 
-    @GetMapping("userDelete")
+    @PostMapping("userDelete")
     public void userDelete(String userId) {
         houTaiService.deleteUser(userId);
     }
 
-    @GetMapping("userEdit")
+    @PostMapping("userEdit")
     public void userEdit(UserVO userVO) {
         houTaiService.updateUser(userVO);
     }
 
-    @GetMapping("userCreate")
+    @PostMapping("userCreate")
     public void userCreate(UserVO userVO) {
         houTaiService.createUser(userVO);
     }
