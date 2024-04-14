@@ -6,13 +6,13 @@
     <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
 </head>
 <body>
-<header th:replace="common/adminTop"></header>
+<header th:replace="common/orderTop"></header>
 <div id="Content">
     <div id="BackLink">
         <a href="/catalog/index">Return to Main Menu</a>
     </div>
 
-    <div id="Catalog">
+    <div th:if="orders.ordersList!=null" id="Catalog">
 
         <h2>Order Manage</h2>
 
@@ -46,6 +46,9 @@
                 </td>
             </tr>
         </table>
+    </div>
+    <div th:if="${orders.ordersList==null}">
+        <h2>No Order Found</h2>
     </div>
 </div>
 <footer th:replace="common/adminBottom"></footer>

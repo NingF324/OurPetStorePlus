@@ -9,55 +9,23 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Category Manage</h2>
-    <table border="1">
+    <table>
         <tr>
             <th>Category ID</th>
             <th>Category Name</th>
+            <th>Description</th>
+            <th>Image</th>
             <th>Modify</th>
         </tr>
-        <tr >
-            <td >BIRDS</td>
-            <td >Birds</td>
+        <tr th:each="category1:${category.categoryList}">
+            <td th:text="${category1.categoryId}">1</td>
+            <td th:text="${category1.categoryName}">Fish</td>
+            <td th:text="${category1.description}">Fish</td>
+            <td> <img th:src="'../'+${category1.image}"></td>
             <td>
-                <a th:href="@{/houTai/categoryEditForm(categoryId=BIRDS)}">Edit</a>
-                <a th:href="@{/houTai/categoryDeleteForm(categoryId=BIRDS)}">Delete</a>
-                <a th:href="@{/houTai/productManage(categoryId=BIRDS)}">Products</a>
-            </td>
-        </tr>
-        <tr >
-            <td >FISH</td>
-            <td >Fish</td>
-            <td>
-                <a th:href="@{/houTai/categoryEditForm(categoryId=FISH)}">Edit</a>
-                <a th:href="@{/houTai/categoryDeleteForm(categoryId=FISH)}">Delete</a>
-                <a th:href="@{/houTai/productManage(categoryId=FISH)}">Products</a>
-            </td>
-        </tr>
-        <tr >
-            <td >DOGS</td>
-            <td >Dogs</td>
-            <td>
-                <a th:href="@{/houTai/categoryEditForm(categoryId=DOGS)}">Edit</a>
-                <a th:href="@{/houTai/categoryDeleteForm(categoryId=DOGS)}">Delete</a>
-                <a th:href="@{/houTai/productManage(categoryId=DOGS)}">Products</a>
-            </td>
-        </tr>
-        <tr >
-            <td >CATS</td>
-            <td >Cats</td>
-            <td>
-                <a th:href="@{/houTai/categoryEditForm(categoryId=CATS)}">Edit</a>
-                <a th:href="@{/houTai/categoryDeleteForm(categoryId=CATS)}">Delete</a>
-                <a th:href="@{/houTai/productManage(categoryId=CATS)}">Products</a>
-            </td>
-        </tr>
-        <tr >
-            <td >REPTILES</td>
-            <td >Reptiles</td>
-            <td>
-                <a th:href="@{/houTai/categoryEditForm(categoryId=REPTILES)}">Edit</a>
-                <a th:href="@{/houTai/categoryDeleteForm(categoryId=REPTILES)}">Delete</a>
-                <a th:href="@{/houTai/productManage(categoryId=REPTILES)}">Products</a>
+                <a th:href="@{/houTai/categoryEditForm(categoryId=${category1.categoryId})}">Edit</a>
+                <a th:href="@{/houTai/categoryDeleteForm(categoryId=${category1.categoryId})}">Delete</a>
+                <a th:href="@{/houTai/productManage(categoryId=${category1.categoryId})}">Products</a>
             </td>
         </tr>
     </table>

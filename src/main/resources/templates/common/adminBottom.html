@@ -18,5 +18,10 @@
 <script src="js/isUserNameExist.js"></script>
 <script src="js/cartAutoUpdate.js"></script>
 <script src="js/removeConfirm.js"></script>
+<!-- 在模板中添加提示框 -->
+<script th:if="${param.message eq 'duplicateLaunch'}">
+    alert('该商品已经上架，不可重复上架！');
+</script>
+
 </body>
 </html>

@@ -26,9 +26,9 @@
         </tr>
         <tr th:each="product:${category.productList}">
             <td th:text="${product.productId}">1</td>
-            <td th:text="${product.categoryId}">Fish</td>
             <td th:text="${product.productName}">Fish</td>
             <td th:text="${product.description}">Fish</td>
+            <td> <img th:src="'../'+${product.image}"></td>
             <td>
             <a th:href="@{/houTai/productEditForm(productId=${product.productId})}">Edit</a>
             <a th:href="@{/houTai/productDeleteForm(productId=${product.productId})}">Delete</a>

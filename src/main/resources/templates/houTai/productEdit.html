@@ -28,9 +28,13 @@
                 <td><input type="text" name="description" th:value="${product.description}"/></td>
             </tr>
             <tr>
+                <td>Product Picture:</td>
+                <td><input type="text" name="image" th:value="${product.image}"/></td>
+            </tr>
+            <tr>
                 <td colspan="2" align="center">
                     <input type="submit" value="Update Product"/>
-                <td><input type="button" value="Cancel" onclick="history.back()"/></td>
+                    <input type="button" value="Cancel" onclick="history.back()"/>
                 </td>
             </tr>
         </table>

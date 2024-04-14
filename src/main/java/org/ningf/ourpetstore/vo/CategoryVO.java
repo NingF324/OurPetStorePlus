@@ -11,6 +11,6 @@ public class CategoryVO {
     private String categoryId;
     private String categoryName;
     private String description;
-    private List<Product> productList;
-    private List<Category> categoryList;
+    private List<ProdVO> productList;
+    private List<CateVO> categoryList;
 }

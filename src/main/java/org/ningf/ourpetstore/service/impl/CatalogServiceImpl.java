@@ -4,12 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.ningf.ourpetstore.entity.*;
 import org.ningf.ourpetstore.persistence.*;
 import org.ningf.ourpetstore.service.CatalogService;
-import org.ningf.ourpetstore.vo.CategoryVO;
-import org.ningf.ourpetstore.vo.ItemVO;
-import org.ningf.ourpetstore.vo.ProductVO;
+import org.ningf.ourpetstore.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +30,9 @@ public class CatalogServiceImpl implements CatalogService {
     @Autowired
     private ItemQuantityMapper itemQuantityMapper;
 
+    @Autowired
+    private LineitemMapper lineitemMapper;
+
     @Override
     public CategoryVO getCategory(String categoryId) {
         CategoryVO categoryVO = new CategoryVO();
@@ -39,18 +41,40 @@ public class CatalogServiceImpl implements CatalogService {
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("category" , categoryId);
         List<Product> productList = productMapper.selectList(queryWrapper);
-
+        List<ProdVO> prodVOList = new ArrayList<>();
+        for(Product product : productList) {
+            ProdVO prodVO = new ProdVO();
+            prodVO.setCategoryId(product.getCategoryId());
+            prodVO.setProductId(product.getProductId());
+            prodVO.setProductName(product.getProductName());
+            String [] temp = product.getDescription().split("\"");
+            prodVO.setDescription(temp[2].substring(1));
+            prodVO.setImage(temp[1]);
+            prodVOList.add(prodVO);
+        }
         categoryVO.setCategoryId(categoryId);
         categoryVO.setCategoryName(category.getCategoryName());
         categoryVO.setDescription(category.getDescription());
-        categoryVO.setProductList(productList);
+        categoryVO.setProductList(prodVOList);
 
         return categoryVO;
     }
 
     @Override
-    public List<Category> getAllCategories() {
-        return categoryMapper.selectAllCategories();
+    public List<CateVO> getAllCategories() {
+        List<CateVO> list=new ArrayList<>();
+        List<Category> categoryList = categoryMapper.selectAllCategories();
+        for (Category category : categoryList) {
+            CateVO cateVO = new CateVO(); // 假设有一个方法将Category对象转换为CateVO对象
+            cateVO.setCategoryId(category.getCategoryId());
+            cateVO.setCategoryName(category.getCategoryName());
+            String [] temp = category.getDescription().split("\"");
+            cateVO.setImage(temp[1]);
+            cateVO.setDescription(temp[2].substring(1));
+            // 其他属性的设置
+            list.add(cateVO);
+        }
+        return list;
     }
 
     @Override
@@ -67,12 +91,23 @@ public class CatalogServiceImpl implements CatalogService {
             QueryWrapper<Item> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("productid", productId);
             List<Item> itemList = itemMapper.selectList(queryWrapper);
-
+            List<ItmVO> itmVOS= new ArrayList<>();
+            for(Item item : itemList){
+                ItmVO itmVO = new ItmVO();
+                itmVO.setItemId(item.getItemId());
+                itmVO.setProductId(item.getProductId());
+                itmVO.setListPrice(item.getListPrice());
+                itmVO.setUnitCost(item.getUnitCost());
+                itmVO.setSupplierId(item.getSupplierId());
+                itmVO.setStatus(item.getStatus());
+                itmVO.setInventory(itemQuantityMapper.selectById(item.getItemId()).getQuantity());
+                itmVOS.add(itmVO);
+            }
             productVO.setProductId(productId);
             productVO.setCategoryId(product.getCategoryId()); // 可能导致异常的代码
             productVO.setProductName(product.getProductName());
             productVO.setDescription(product.getDescription());
-            productVO.setItemList(itemList);
+            productVO.setItemList(itmVOS);
         } else {
             // 如果产品为空，则设置默认值或者抛出异常
             // 在这里，我们选择抛出异常
@@ -159,14 +194,14 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public boolean updateCategory(CategoryVO categoryVO) {
+    public boolean updateCategory(CateVO categoryVO) {
         if (categoryVO.getCategoryId() == "") {
             return false;
         }
         Category category = new Category();
         category.setCategoryId(categoryVO.getCategoryId());
         category.setCategoryName(categoryVO.getCategoryName());
-        category.setDescription(categoryVO.getDescription());
+        category.setDescription(categoryVO.getImage()+categoryVO.getDescription());
 
         int updateResult = categoryMapper.updateById(category);
 
@@ -211,7 +246,7 @@ public class CatalogServiceImpl implements CatalogService {
 
 
     @Override
-    public boolean updateProduct(ProductVO productVO) {
+    public boolean updateProduct(ProdVO productVO) {
         if (productVO == null) {
             return false;
         }
@@ -221,7 +256,7 @@ public class CatalogServiceImpl implements CatalogService {
         product.setProductId(productVO.getProductId());
         product.setCategoryId(productVO.getCategoryId());
         product.setProductName(productVO.getProductName());
-        product.setDescription(productVO.getDescription());
+        product.setDescription(productVO.getImage()+productVO.getDescription());
 
         // 尝试执行更新操作
         int updateResult = productMapper.updateById(product);
@@ -270,7 +305,7 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public boolean updateItem(ItemVO itemVO) {
+    public boolean updateItem(ItmVO itemVO) {
         if(itemVO==null||itemVO.getSupplierId()>2){
             return false;
         }
@@ -283,6 +318,10 @@ public class CatalogServiceImpl implements CatalogService {
         item.setStatus(itemVO.getStatus());
         // 尝试执行更新操作
         int updateResult = itemMapper.updateById(item);
+        int quantity=itemVO.getInventory();
+        ItemQuantity itemQuantity=itemQuantityMapper.selectById(itemVO.getItemId());
+        itemQuantity.setQuantity(quantity);
+        itemQuantityMapper.updateById(itemQuantity);
         // 检查更新操作是否成功
         if (updateResult > 0) {
             // 更新成功
@@ -312,4 +351,28 @@ public class CatalogServiceImpl implements CatalogService {
             return false;
         }
     }
+
+    @Override
+    public ProductVO searchItems(String keyword) {
+        ProductVO productVO=new ProductVO();
+        QueryWrapper<Item> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("itemid",keyword);
+        List<Item> itemList = itemMapper.selectList(queryWrapper);
+        List<ItmVO> itmVOS= new ArrayList<>();
+        for(Item item : itemList){
+            ItmVO itmVO = new ItmVO();
+            itmVO.setItemId(item.getItemId());
+            itmVO.setProductId(item.getProductId());
+            itmVO.setListPrice(item.getListPrice());
+            itmVO.setUnitCost(item.getUnitCost());
+            itmVO.setSupplierId(item.getSupplierId());
+            itmVO.setStatus(item.getStatus());
+            itmVO.setInventory(itemQuantityMapper.selectById(item.getItemId()).getQuantity());
+            itmVOS.add(itmVO);
+        }
+        productVO.setItemList(itmVOS);
+        return productVO;
+    }
+
+
 }

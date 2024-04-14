@@ -32,6 +32,15 @@ public class HoutaiServiceImpl implements HouTaiService {
     private AdminMapper adminMapper;
 
     @Autowired
+    private ItemMapper itemMapper;
+
+    @Autowired
+    private OrderstatusMapper orderstatusMapper;
+
+    @Autowired
+    private LineitemMapper lineitemMapper;
+
+    @Autowired
     private CategoryMapper categoryMapper;
     @Override
     public boolean login(String adminname, String adminpassword) {
@@ -126,6 +135,33 @@ public class HoutaiServiceImpl implements HouTaiService {
     }
 
     @Override
+    public List<Orders> searchOrders(String keyword) {
+        List<Orders> ordersList =new ArrayList<>();
+        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
+        try {
+            int orderId = Integer.parseInt(keyword);
+            queryWrapper.like("userid", keyword).or().like("orderid", orderId);
+            // 执行搜索操作
+        } catch (NumberFormatException e) {
+            // 处理无法转换为整数的情况
+            // 可以输出日志或者给出提示信息
+        }
+        ordersList = ordersMapper.selectList(queryWrapper);
+
+        QueryWrapper<Lineitem> lineitemQueryWrapper = new QueryWrapper<>();
+        lineitemQueryWrapper.like("itemid", keyword);
+        List<Lineitem> lineitemList = lineitemMapper.selectList(lineitemQueryWrapper);
+
+        for(Lineitem lineitem: lineitemList){
+            Orders orders = ordersMapper.selectById(lineitem.getOrderid());
+            if(!ordersList.contains(orders)){
+                ordersList.add(orders);
+            }
+        }
+
+        return ordersList;
+    }
+    @Override
     public boolean updateOrder(OrderVO ordersVO) {
         Orders orders = new Orders();
         orders.setOrderId(ordersVO.getOrderId());
@@ -162,6 +198,31 @@ public class HoutaiServiceImpl implements HouTaiService {
     public boolean deleteOrder(String orderId) {
         int deleteResult = ordersMapper.deleteById(orderId);
         return deleteResult>0;
+    }
+
+    @Override
+    public boolean launchItem(String itemId) {
+        Item item = itemMapper.selectById(itemId);
+        String status = item.getStatus();
+        boolean ans =!status.equals("A");
+        item.setStatus("A");
+        itemMapper.updateById(item);
+        return ans;
+    }
+
+    @Override
+    public boolean delistItem(String itemId) {
+        Item item = itemMapper.selectById(itemId);
+        String status = item.getStatus();
+        boolean ans =!status.equals("P");
+        item.setStatus("P");
+        itemMapper.updateById(item);
+        return ans;
+    }
+
+    @Override
+    public Orderstatus getOrderStatusById(String orderId) {
+        return orderstatusMapper.selectById(orderId);
     }
 
     @Override

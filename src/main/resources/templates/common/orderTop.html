@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<header th:fragment="header">
+  <div id="Header">
+
+    <div id="Logo">
+      <div id="LogoContent">
+        <a href="/catalog/index"> <img src="../images/logo-topbar.gif" /></a>
+      </div>
+    </div>
+  </div>
+  <div id="Menu">
+    <div id="SearchContent">
+      <form action="/houTai/orderSearch" method="post">
+        <input type="text" name="keyword" id="keyword" size="14">
+        <input type="submit" name="searchProducts" value="Search">
+      </form>
+    </div>
+  </div>
+  <div id="Search">
+
+  </div>
+  <div id="QuickLinks">
+    <a href="/houTai/userManage">User Manage</a>
+    <img src="../images/separator.gif" />
+    <a href="/houTai/categoryManage">Category Manage</a>
+    <img src="../images/separator.gif" />
+    <a href="/houTai/orderManage">Order Manage</a>
+  </div>
+</header>
+</body>
+</html>

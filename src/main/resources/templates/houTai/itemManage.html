@@ -11,7 +11,6 @@
 <div id="BackLink">
     <a href="/catalog/index">Return to Main Menu</a>
 </div>
-
 <div id="Catalog">
     <h2>Item Manage</h2>
 
@@ -23,6 +22,7 @@
             <th>UnitCost</th>
             <th>Status</th>
             <th>SupplierId</th>
+            <th>Inventory</th>
             <th>Modify</th>
         </tr>
         <tr th:each="item:${product.itemList}">
@@ -32,9 +32,12 @@
             <td th:text="${item.unitCost}">Fish</td>
             <td th:text="${item.status}">Fish</td>
             <td th:text="${item.supplierId}">Fish</td>
+            <td th:text="${item.inventory}">Fish</td>
             <td>
                 <a th:href="@{/houTai/itemEditForm(itemId=${item.itemId})}">Edit</a>
                 <a th:href="@{/houTai/itemDeleteForm(itemId=${item.itemId})}">Delete</a>
+                <a th:href="@{/houTai/itemLaunch(itemId=${item.itemId})}">Launch</a>
+                <a th:href="@{/houTai/itemDelist(itemId=${item.itemId})}">Delist</a>
             </td>
         </tr>
     </table>

@@ -1,11 +1,13 @@
 package org.ningf.ourpetstore.controller;
 
 import org.ningf.ourpetstore.entity.Orders;
+import org.ningf.ourpetstore.entity.Orderstatus;
+import org.ningf.ourpetstore.persistence.ItemQuantityMapper;
+import org.ningf.ourpetstore.persistence.OrderstatusMapper;
 import org.ningf.ourpetstore.service.CatalogService;
 import org.ningf.ourpetstore.service.HouTaiService;
 import org.ningf.ourpetstore.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,10 @@ public class HouTaiController {
 
     @Autowired
     private CatalogService catalogService;
+    @Autowired
+    private ItemQuantityMapper itemQuantityMapper;
+    @Autowired
+    private OrderstatusMapper orderstatusMapper;
 
     @GetMapping("loginForm")
     public String loginForm() {
@@ -31,11 +37,11 @@ public class HouTaiController {
     }
 
     @PostMapping("login")
-    public String login(@RequestParam("adminname") String adminname, @RequestParam("adminpassword") String adminpassword) {
+    public String login(@RequestParam("adminname") String adminname, @RequestParam("adminpassword") String adminpassword,Model model) {
         boolean login = houTaiService.login(adminname, adminpassword);
         System.out.println(login);
         if (login) {
-            return "houTai/categoryManage";
+            return this.categoryManage(model);
         } else {
             return "houTai/login";
         }
@@ -66,19 +72,28 @@ public class HouTaiController {
     }
 
     @GetMapping("categoryManage")
-    public String categoryManage() {
+    public String categoryManage(Model model) {
+        CategoryVO categoryVO = new CategoryVO();
+        categoryVO.setCategoryList(catalogService.getAllCategories());
+        model.addAttribute("category", categoryVO);
         return "houTai/categoryManage";
     }
 
     @GetMapping("categoryEditForm")
     public String categoryEditForm(String categoryId, Model model) {
         CategoryVO categoryVO = catalogService.getCategory(categoryId);
-        model.addAttribute("category", categoryVO);
+        CateVO cateVO= new CateVO();
+        cateVO.setCategoryId(categoryVO.getCategoryId());
+        cateVO.setCategoryName(categoryVO.getCategoryName());
+        String [] temp = categoryVO.getDescription().split("\"");
+        cateVO.setImage(temp[1]);
+        cateVO.setDescription(temp[2].substring(1));
+        model.addAttribute("category", cateVO);
         return "houTai/categoryEdit";
     }
 
     @PostMapping("categoryEdit")
-    public String categoryEdit(CategoryVO categoryVO) {
+    public String categoryEdit(CateVO categoryVO) {
         boolean updateSuccessful = catalogService.updateCategory(categoryVO);
         if (updateSuccessful) {
             return "redirect:/houTai/categoryManage" ;
@@ -130,7 +145,13 @@ public class HouTaiController {
         model.addAttribute("orders", orders);
         return "houTai/orderManage";
     }
-
+    @PostMapping("orderSearch")
+    public String orderSearch(String keyword, Model model) {
+        OrdersVO orders = new OrdersVO();
+        orders.setOrdersList(houTaiService.searchOrders(keyword));
+        model.addAttribute("orders", orders);
+        return "houTai/orderManage";
+    }
     @GetMapping("orderEditForm")
     public String orderEditForm(String orderId, Model model) {
         Orders orders = houTaiService.getOrderById(orderId);
@@ -170,8 +191,46 @@ public class HouTaiController {
     @GetMapping("orderView")
     public String orderView(String orderId, Model model) {
         Orders orders = houTaiService.getOrderById(orderId);
+        String status = houTaiService.getOrderStatusById(orderId).getStatus();
+        String trackingNumber = houTaiService.getOrderStatusById(orderId).getTrackingnumber()+"";
         model.addAttribute("order", orders);
+        model.addAttribute("status", status);
+        model.addAttribute("trackingNumber", trackingNumber);
         return "houTai/orderView";
+    }
+
+    @GetMapping("orderDeliveryForm")
+    public String orderDeliveryForm(String orderId ,Model model) {
+        Orders orders = houTaiService.getOrderById(orderId);
+        Orderstatus orderstatus=houTaiService.getOrderStatusById(orderId);
+        OrderStatusVO orderStatusVO = new OrderStatusVO();
+        orderStatusVO.setOrderId(orderId);
+        orderStatusVO.setUserId(orders.getUserId());
+        orderStatusVO.setOrderDate(orders.getOrderDate());
+        orderStatusVO.setStatus(orderstatus.getStatus());
+        orderStatusVO.setTrackingNumber(null);
+        model.addAttribute("order", orderStatusVO);
+        return "houTai/orderDelivery";
+    }
+
+    @PostMapping("orderDelivery")
+    public String orderDelivery(OrderStatusVO orderStatusVO) {
+        Orderstatus orderstatus = new Orderstatus();
+        orderstatus.setOrderid(Integer.parseInt(orderStatusVO.getOrderId()));
+        orderstatus.setLinenum(Integer.parseInt(orderStatusVO.getOrderId()));
+        orderstatus.setTimestamp(orderStatusVO.getOrderDate());
+        orderstatus.setStatus("S");
+        orderstatus.setTrackingnumber(Integer.parseInt(orderStatusVO.getTrackingNumber()));
+        int updateResult = orderstatusMapper.updateById(orderstatus);
+        return updateResult > 0 ? "redirect:/houTai/orderManage" : "redirect:/houTai/orderDeliveryForm?orderId="+orderStatusVO.getOrderId();
+    }
+
+    @GetMapping("orderConfirm")
+    public String orderConfirm(String orderId) {
+        Orderstatus orderstatus = orderstatusMapper.selectById(orderId);
+        orderstatus.setStatus("C");
+        int updateResult = orderstatusMapper.updateById(orderstatus);
+        return updateResult > 0 ? "redirect:/houTai/orderManage" : "redirect:/houTai/orderView?orderId="+orderId;
     }
 
     @GetMapping("productManage")
@@ -184,12 +243,19 @@ public class HouTaiController {
     @GetMapping("productEditForm")
     public String productEditForm(String productId, Model model) {
         ProductVO productVO = catalogService.getProduct(productId);
-        model.addAttribute("product", productVO);
+        ProdVO prodVO = new ProdVO();
+        prodVO.setProductId(productVO.getProductId());
+        prodVO.setCategoryId(productVO.getCategoryId());
+        prodVO.setProductName(productVO.getProductName());
+        String [] temp = productVO.getDescription().split("\"");
+        prodVO.setDescription(temp[2].substring(1));
+        prodVO.setImage(temp[1]);
+        model.addAttribute("product", prodVO);
         return "houTai/productEdit";
     }
 
     @PostMapping("productEdit")
-    public String productEdit(ProductVO productVO) {
+    public String productEdit(ProdVO productVO) {
         boolean updateSuccessful = catalogService.updateProduct(productVO);
         if (updateSuccessful) {
             // 如果更新成功，获取更新后的项目ID
@@ -247,13 +313,21 @@ public class HouTaiController {
 
     @GetMapping("itemEditForm")
     public String itemEditForm(String itemId, Model model) {
-        ItemVO itemVO = catalogService.getItem(itemId);
-        model.addAttribute("item", itemVO);
+        ItemVO item = catalogService.getItem(itemId);
+        ItmVO itmVO = new ItmVO();
+        itmVO.setItemId(item.getItemId());
+        itmVO.setProductId(item.getProductId());
+        itmVO.setListPrice(item.getListPrice());
+        itmVO.setUnitCost(item.getUnitCost());
+        itmVO.setSupplierId(item.getSupplierId());
+        itmVO.setStatus(item.getStatus());
+        itmVO.setInventory(itemQuantityMapper.selectById(item.getItemId()).getQuantity());
+        model.addAttribute("item", itmVO);
         return "houTai/itemEdit"; // 返回相应的视图名称
     }
 
     @PostMapping("itemEdit")
-    public String itemEdit(ItemVO itemVO) {
+    public String itemEdit(ItmVO itemVO) {
         boolean updateSuccessful = catalogService.updateItem(itemVO);
         if (updateSuccessful) {
             // 如果更新成功，获取更新后的项目ID
@@ -287,6 +361,34 @@ public class HouTaiController {
         }
     }
 
+    @GetMapping("itemLaunch")
+    public String itemLaunch(String itemId) {
+        boolean b = houTaiService.launchItem(itemId);
+        if(b){
+            ItemVO item = catalogService.getItem(itemId);
+            String updatedProductId =  item.getProductId();
+            return "redirect:/houTai/itemManage?productId="+updatedProductId;
+        }else{
+            ItemVO item = catalogService.getItem(itemId);
+            String updatedProductId =  item.getProductId();
+            return "redirect:/houTai/itemManage?message=duplicateLaunch&productId="+updatedProductId;
+        }
+    }
+
+    @GetMapping("itemDelist")
+    public String itemDelist(String itemId) {
+        boolean b = houTaiService.delistItem(itemId);
+        if(b){
+            ItemVO item = catalogService.getItem(itemId);
+            String updatedProductId =  item.getProductId();
+            return "redirect:/houTai/itemManage?productId="+updatedProductId;
+        }else{
+            ItemVO item = catalogService.getItem(itemId);
+            String updatedProductId =  item.getProductId();
+            return "redirect:/houTai/itemManage?message=duplicateDelist&productId="+updatedProductId;
+        }
+    }
+
     @GetMapping("itemNewForm")
     public String itemNewForm() {
         return "houTai/itemNew";
@@ -301,6 +403,13 @@ public class HouTaiController {
         }else{
             return "redirect:/houTai/itemNewForm";
         }
+    }
+
+    @PostMapping("itemSearch")
+    public String itemSearch(String keyword, Model model) {
+        ProductVO productVO = catalogService.searchItems(keyword);
+        model.addAttribute("product", productVO);
+        return "houTai/itemManage";
     }
 
     @GetMapping("userDeleteForm")

@@ -4,17 +4,19 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * @description:
+ * @author: Lenovo
+ * @time: 2024/4/14 21:57
+ */
 @Data
-public class ItemVO {
-    private String itemId;
+
+public class ItmVO {
+private String itemId;
     private String productId;
     private BigDecimal listPrice;
     private BigDecimal unitCost;
     private int supplierId;
     private String status;
-    private String productName;
-    private String descriptionImage;
-    private String descriptionText;
-    private String attributes;
-    private Integer quantity;
+    private int inventory;
 }

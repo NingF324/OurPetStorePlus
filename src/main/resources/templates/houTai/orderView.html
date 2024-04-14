@@ -6,9 +6,12 @@
     <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
 </head>
 <body>
-<header th:replace="common/adminTop"></header>
+<header th:replace="common/orderTop"></header>
 <div id="Content">
-    <h2>Order Information</h2>
+    <h2>Order Information：</h2>
+    <h3 th:if="${status}=='P'">To be confirmed</h3>
+    <h3 th:if="${status}=='C'">Confirmed</h3>
+    <h3 th:if="${status}=='S'">Shipped, TrackingNumber is <span th:text="${trackingNumber}"></span></h3>
     <table>
         <tr>
             <td>Order ID:</td>
@@ -111,7 +114,8 @@
             <td><input type="text" name="status" th:value="${order.locale}" readonly="readonly"/></td>
         </tr>
     </table>
-    <a href="/houTai/orderDelivery">Delivery</a><br>
+    <a th:if="${status}=='P'" th:href="@{/houTai/orderConfirm(orderId=${order.orderId})}">Confirm</a>
+    <a th:if="${status}=='C'" th:href="@{/houTai/orderDeliveryForm(orderId=${order.orderId})}">Delivery</a><br>
     <td><input type="button" value="Go Back" onclick="history.back()"/></td>
 </div>
 <footer th:replace="common/adminBottom"></footer>

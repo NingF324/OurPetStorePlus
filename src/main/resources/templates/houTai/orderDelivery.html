@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Delete</title>
+    <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<header th:replace="common/orderTop"></header>
+<div id="Content">
+    <h2>Order Delivery</h2>
+    <form action="/houTai/orderDelivery" method="post">
+        <table>
+            <tr>
+                <td>Order ID:</td>
+                <td><input type="text" name="orderId" th:value="${order.orderId}"/></td>
+            </tr>
+            <tr>
+                <td>User ID:</td>
+                <td><input type="text" name="userId" th:value="${order.userId}"/></td>
+            </tr>
+            <tr>
+                <td>Order Date:</td>
+                <td><input type="text" name="orderDate" th:value="${order.orderDate}"/></td>
+            </tr>
+            <tr>
+                <td>Order Status:</td>
+                <td><input type="text" name="status" th:value="${order.status}"/></td>
+            </tr>
+            <tr>
+                <td>Checking Number:</td>
+                <td><input type="text" name="trackingNumber" th:value="${order.trackingNumber}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Delivery Order"/>
+                    <input type="button" value="Cancel" onclick="history.back()"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<footer th:replace="common/adminBottom"></footer>
+</body>
+</html>
