@@ -7,7 +7,7 @@
     <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Product">
             <id property="productId" column="productid" jdbcType="VARCHAR"/>
             <result property="categoryId" column="category" jdbcType="VARCHAR"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="productName" column="name" jdbcType="VARCHAR"/>
             <result property="description" column="descn" jdbcType="VARCHAR"/>
     </resultMap>
 

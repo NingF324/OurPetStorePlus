@@ -5,30 +5,30 @@
 <mapper namespace="org.ningf.ourpetstore.persistence.OrdersMapper">
 
     <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Orders">
-            <id property="orderid" column="orderid" jdbcType="INTEGER"/>
-            <result property="userid" column="userid" jdbcType="VARCHAR"/>
-            <result property="orderdate" column="orderdate" jdbcType="TIMESTAMP"/>
-            <result property="shipaddr1" column="shipaddr1" jdbcType="VARCHAR"/>
-            <result property="shipaddr2" column="shipaddr2" jdbcType="VARCHAR"/>
-            <result property="shipcity" column="shipcity" jdbcType="VARCHAR"/>
-            <result property="shipstate" column="shipstate" jdbcType="VARCHAR"/>
-            <result property="shipzip" column="shipzip" jdbcType="VARCHAR"/>
-            <result property="shipcountry" column="shipcountry" jdbcType="VARCHAR"/>
-            <result property="billaddr1" column="billaddr1" jdbcType="VARCHAR"/>
-            <result property="billaddr2" column="billaddr2" jdbcType="VARCHAR"/>
-            <result property="billcity" column="billcity" jdbcType="VARCHAR"/>
-            <result property="billstate" column="billstate" jdbcType="VARCHAR"/>
-            <result property="billzip" column="billzip" jdbcType="VARCHAR"/>
-            <result property="billcountry" column="billcountry" jdbcType="VARCHAR"/>
+            <id property="orderId" column="orderid" jdbcType="INTEGER"/>
+            <result property="userId" column="userid" jdbcType="VARCHAR"/>
+            <result property="orderDate" column="orderdate" jdbcType="TIMESTAMP"/>
+            <result property="shipAddr1" column="shipaddr1" jdbcType="VARCHAR"/>
+            <result property="shipAddr2" column="shipaddr2" jdbcType="VARCHAR"/>
+            <result property="shipCity" column="shipcity" jdbcType="VARCHAR"/>
+            <result property="shipState" column="shipstate" jdbcType="VARCHAR"/>
+            <result property="shipZip" column="shipzip" jdbcType="VARCHAR"/>
+            <result property="shipCountry" column="shipcountry" jdbcType="VARCHAR"/>
+            <result property="billAddr1" column="billaddr1" jdbcType="VARCHAR"/>
+            <result property="billAddr2" column="billaddr2" jdbcType="VARCHAR"/>
+            <result property="billCity" column="billcity" jdbcType="VARCHAR"/>
+            <result property="billState" column="billstate" jdbcType="VARCHAR"/>
+            <result property="billZip" column="billzip" jdbcType="VARCHAR"/>
+            <result property="billCountry" column="billcountry" jdbcType="VARCHAR"/>
             <result property="courier" column="courier" jdbcType="VARCHAR"/>
-            <result property="totalprice" column="totalprice" jdbcType="DECIMAL"/>
-            <result property="billtofirstname" column="billtofirstname" jdbcType="VARCHAR"/>
-            <result property="billtolastname" column="billtolastname" jdbcType="VARCHAR"/>
-            <result property="shiptofirstname" column="shiptofirstname" jdbcType="VARCHAR"/>
-            <result property="shiptolastname" column="shiptolastname" jdbcType="VARCHAR"/>
-            <result property="creditcard" column="creditcard" jdbcType="VARCHAR"/>
-            <result property="exprdate" column="exprdate" jdbcType="VARCHAR"/>
-            <result property="cardtype" column="cardtype" jdbcType="VARCHAR"/>
+            <result property="totalPrice" column="totalprice" jdbcType="DECIMAL"/>
+            <result property="billToFirstname" column="billtofirstname" jdbcType="VARCHAR"/>
+            <result property="billToLastname" column="billtolastname" jdbcType="VARCHAR"/>
+            <result property="shipToFirstname" column="shiptofirstname" jdbcType="VARCHAR"/>
+            <result property="shipToLastname" column="shiptolastname" jdbcType="VARCHAR"/>
+            <result property="creditCard" column="creditcard" jdbcType="VARCHAR"/>
+            <result property="exprDate" column="exprdate" jdbcType="VARCHAR"/>
+            <result property="cardType" column="cardtype" jdbcType="VARCHAR"/>
             <result property="locale" column="locale" jdbcType="VARCHAR"/>
     </resultMap>
 

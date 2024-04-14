@@ -10,7 +10,8 @@ import lombok.Data;
 public class Category {
     @TableId(value = "catid")
     private String categoryId;
-    private String name;
+    @TableField("name")
+    private String categoryName;
     @TableField("descn")
     private String description;
 }

@@ -5,9 +5,9 @@
 <mapper namespace="org.ningf.ourpetstore.persistence.CategoryMapper">
 
     <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Category">
-            <id property="catid" column="catid" jdbcType="VARCHAR"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="descn" column="descn" jdbcType="VARCHAR"/>
+            <id property="categoryId" column="catid" jdbcType="VARCHAR"/>
+            <result property="categoryName" column="name" jdbcType="VARCHAR"/>
+            <result property="description" column="descn" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">

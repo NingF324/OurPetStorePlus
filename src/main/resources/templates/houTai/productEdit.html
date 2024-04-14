@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td>Product Name:</td>
-                <td><input type="text" name="name" th:value="${product.productName}"/></td>
+                <td><input type="text" name="productName" th:value="${product.productName}"/></td>
             </tr>
             <tr>
                 <td>Product Description:</td>
@@ -30,11 +30,11 @@
             <tr>
                 <td colspan="2" align="center">
                     <input type="submit" value="Update Product"/>
+                <td><input type="button" value="Cancel" onclick="history.back()"/></td>
                 </td>
             </tr>
         </table>
     </form>
-    <a href="productList">Return to Product List</a>
 </div>
 <footer th:replace="common/adminBottom"></footer>
 </body>

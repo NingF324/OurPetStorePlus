@@ -10,7 +10,8 @@ public class Product {
     private String productId; // product_id
     @TableField("category")
     private String categoryId;
-    private String name;
+    @TableField("name")
+    private String productName;
     @TableField("descn")
     private String description;
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ningf.ourpetstore.persistence.AdminMapper">
+
+    <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Admin">
+        <result property="adminname" column="adminname" jdbcType="VARCHAR"/>
+        <result property="adminpassword" column="adminpassword" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        adminname,adminpassword
+    </sql>
+</mapper>

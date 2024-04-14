@@ -13,63 +13,49 @@
         <table>
             <tr>
                 <td>Order ID:</td>
-                <td><input type="text" name="orderId" th:value="${order.orderid}" readonly="readonly"/></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="orderId" th:value="${order.orderId}" readonly="readonly"/></td>
                 <td>User ID:</td>
-                <td><input type="text" name="userid" th:value="${order.userid}" readonly="readonly"/></td>
+                <td><input type="text" name="userid" th:value="${order.userId}" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td>Order Date:</td>
-                <td><input type="text" name="orderDate" th:value="${order.orderdate}"/></td>
+                <td><input type="text" name="orderDate" th:value="${order.orderDate}"/></td>
             </tr>
             <tr>
                 <td>Ship Address1:</td>
-                <td><input type="text" name="shipaddr1" th:value="${order.shipaddr1}"/></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="shipaddr1" th:value="${order.shipAddr1}"/></td>
                 <td>Ship Address2:</td>
-                <td><input type="text" name="shipaddr2" th:value="${order.shipaddr2}"/></td>
+                <td><input type="text" name="shipaddr2" th:value="${order.shipAddr2}"/></td>
             </tr>
             <tr>
                 <td>Ship City:</td>
-                <td><input type="text" name="shipcity" th:value="${order.shipcity}" /></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="shipcity" th:value="${order.shipCity}" /></td>
                 <td>Ship State:</td>
-                <td><input type="text" name="shipstate" th:value="${order.shipstate}" /></td>
+                <td><input type="text" name="shipstate" th:value="${order.shipState}" /></td>
             </tr>
             <tr>
                 <td>Ship Zip:</td>
-                <td><input type="text" name="shipzip" th:value="${order.shipzip}" /></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="shipzip" th:value="${order.shipZip}" /></td>
                 <td>Ship Country:</td>
-                <td><input type="text" name="shipcountry" th:value="${order.shipcountry}" /></td>
+                <td><input type="text" name="shipcountry" th:value="${order.shipCountry}" /></td>
             </tr>
             <tr>
                 <td>Bill Address1:</td>
-                <td><input type="text" name="billaddr1" th:value="${order.billaddr1}" /></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="billaddr1" th:value="${order.billAddr1}" /></td>
                 <td>Bill Address2:</td>
-                <td><input type="text" name="billaddr2" th:value="${order.billaddr2}" /></td>
+                <td><input type="text" name="billaddr2" th:value="${order.billAddr2}" /></td>
             </tr>
             <tr>
                 <td>Bill City:</td>
-                <td><input type="text" name="billcity" th:value="${order.billcity}" /></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="billcity" th:value="${order.billCity}" /></td>
                 <td>Bill State:</td>
-                <td><input type="text" name="billstate" th:value="${order.billstate}" /></td>
+                <td><input type="text" name="billstate" th:value="${order.billState}" /></td>
             </tr>
             <tr>
                 <td>Bill Zip:</td>
-                <td><input type="text" name="billzip" th:value="${order.billzip}" /></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="billzip" th:value="${order.billZip}" /></td>
                 <td>Bill Country:</td>
-                <td><input type="text" name="billcountry" th:value="${order.billcountry}" /></td>
+                <td><input type="text" name="billcountry" th:value="${order.billCountry}" /></td>
             </tr>
             <tr>
                 <td>Courier</td>
@@ -77,35 +63,31 @@
             </tr>
             <tr>
                 <td>Order Total:</td>
-                <td><input type="text" name="totalprice" th:value="${order.totalprice}" /></td>
+                <td><input type="text" name="totalprice" th:value="${order.totalPrice}" /></td>
             </tr>
             <tr>
                 <td>Bill Firstname:</td>
-                <td><input type="text" name="status" th:value="${order.billtofirstname}" /></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="status" th:value="${order.billToFirstname}" /></td>
                 <td>Bill Lastname:</td>
-                <td><input type="text" name="status" th:value="${order.billtolastname}" /></td>
+                <td><input type="text" name="status" th:value="${order.billToLastname}" /></td>
             </tr>
             <tr>
                 <td>Ship Firstname:</td>
-                <td><input type="text" name="status" th:value="${order.shiptofirstname}" /></td>
-            </tr>
-            <tr>
+                <td><input type="text" name="status" th:value="${order.shipToFirstname}" /></td>
                 <td>Ship Lastname:</td>
-                <td><input type="text" name="status" th:value="${order.shiptolastname}" /></td>
+                <td><input type="text" name="status" th:value="${order.shipToLastname}" /></td>
             </tr>
             <tr>
                 <td>Credit Card:</td>
-                <td><input type="text" name="status" th:value="${order.creditcard}" /></td>
+                <td><input type="text" name="status" th:value="${order.creditCard}" /></td>
             </tr>
             <tr>
                 <td>Expiry Date:</td>
-                <td><input type="text" name="status" th:value="${order.exprdate}" /></td>
+                <td><input type="text" name="status" th:value="${order.exprDate}" /></td>
             </tr>
             <tr>
                 <td>Card Type:</td>
-                <td><input type="text" name="status" th:value="${order.cardtype}" /></td>
+                <td><input type="text" name="status" th:value="${order.cardType}" /></td>
             </tr>
             <tr>
                 <td>Locale:</td>
@@ -115,6 +97,7 @@
                 <td colspan="2" align="center">
                     <input type="submit" value="Update Order"/>
                 </td>
+                <td><input type="button" value="Cancel" onclick="history.back()"/></td>
             </tr>
         </table>
     </form>

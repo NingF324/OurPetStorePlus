@@ -28,8 +28,8 @@
                 <td><input type="text" name="unitCost" th:value="${item.unitCost}"/></td>
             </tr>
             <tr>
-                <td>Supplier:</td>
-                <td><input type="text" name="supplier" th:value="${item.supplierId}"/></td>
+                <td>Supplier Id:</td>
+                <td><input type="text" name="supplierId" th:value="${item.supplierId}"/></td>
             </tr>
             <tr>
                 <td>Status:</td>
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td><input type="submit" value="Edit"/></td>
-                <td><input type="button" value="Cancel" onclick="window.location.href='itemList'"/></td>
+                <td><input type="button" value="Cancel" onclick="history.back()"/></td>
             </tr>
         </table>
     </form>

@@ -9,7 +9,7 @@
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Edit Product</h2>
-    <form action="/houTai/productEdit" method="post">
+    <form action="/houTai/productDelete" method="post">
         <table>
             <tr>
                 <td>Product ID:</td>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td>Product Name:</td>
-                <td><input type="text" name="name" th:value="${product.productName}"/></td>
+                <td><input type="text" name="productName" th:value="${product.productName}"/></td>
             </tr>
             <tr>
                 <td>Product Description:</td>
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td><input type="submit" value="Delete"/></td>
-                <td><input type="button" value="Cancel" onclick="window.location.href='/houTai/productManage'"/></td>
+                <td><input type="button" value="Cancel" onclick="history.back()"/></td>
             </tr>
         </table>
     </form>

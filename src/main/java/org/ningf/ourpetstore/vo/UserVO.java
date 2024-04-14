@@ -13,6 +13,7 @@ public class UserVO {
     private String firstname;
     private String lastname;
     private String password;
+    private String status;
     private String email;
     private String phone;
     private String address1;
@@ -21,4 +22,5 @@ public class UserVO {
     private String state;
     private String zip;
     private String country;
+
 }

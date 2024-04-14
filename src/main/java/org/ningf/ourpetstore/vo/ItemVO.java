@@ -7,16 +7,16 @@ import java.math.BigDecimal;
 @Data
 public class ItemVO {
     private String itemId;
-
     private String productId;
+    private BigDecimal listPrice;
+    private BigDecimal unitCost;
+    private int supplierId;
+    private String status;
     private String productName;
     private String descriptionImage;
     private String descriptionText;
-
-    private BigDecimal listPrice;
     private String attributes;
-    private String UnitCost;
     private Integer quantity;
-    private String status;
-    private String supplierId;
+
+
 }

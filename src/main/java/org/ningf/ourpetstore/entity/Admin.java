@@ -5,38 +5,25 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
 
 /**
- * 
- * @TableName orderstatus
+ *
+ * @TableName admin
  */
-@TableName(value ="orderstatus")
+@TableName(value ="admin")
 @Data
-public class Orderstatus implements Serializable {
+public class Admin implements Serializable {
     /**
-     * 
+     *
      */
-    @TableId
-    private Integer orderid;
+    @TableId(type = IdType.AUTO)
+    private String adminname;
 
     /**
-     * 
+     *
      */
-    private Integer linenum;
-
-    /**
-     * 
-     */
-    private Date timestamp;
-
-    /**
-     * 
-     */
-    private String status;
-
-    private int trackingnumber;
+    private String adminpassword;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

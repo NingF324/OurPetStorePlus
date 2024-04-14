@@ -9,10 +9,11 @@
             <id property="linenum" column="linenum" jdbcType="INTEGER"/>
             <result property="timestamp" column="timestamp" jdbcType="DATE"/>
             <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="trackingnumber" column="sttrackingnumberatus" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         orderid,linenum,timestamp,
-        status
+        status,trackingnumber
     </sql>
 </mapper>

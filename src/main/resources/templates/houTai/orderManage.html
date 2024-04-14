@@ -30,19 +30,19 @@
                 <th>Modify</th>
             </tr>
             <tr th:each="order:${orders.ordersList}">
-                <td th:text="${order.orderid}">1</td>
-                <td th:text="${order.userid}">Username</td>
-                <td th:text="${order.orderdate}">Order Date</td>
-                <td th:text="${order.shipaddr1}">Ship Address</td>
-                <td th:text="${order.shipcity}">Ship State</td>
-                <td th:text="${order.shipstate}">Ship Zip</td>
-                <td th:text="${order.shipzip}">Ship Country</td>
-                <td th:text="${order.shipcountry}">Bill Address</td>
-                <td th:text="${order.totalprice}">Total Price</td>
+                <td th:text="${order.orderId}">1</td>
+                <td th:text="${order.userId}">Username</td>
+                <td th:text="${order.orderDate}">Order Date</td>
+                <td th:text="${order.shipAddr1}">Ship Address</td>
+                <td th:text="${order.shipCity}">Ship State</td>
+                <td th:text="${order.shipState}">Ship Zip</td>
+                <td th:text="${order.shipZip}">Ship Country</td>
+                <td th:text="${order.shipCountry}">Bill Address</td>
+                <td th:text="${order.totalPrice}">Total Price</td>
                 <td>
-                    <a th:href="@{/houTai/orderView(orderId=${order.orderid})}">More</a>
-                    <a th:href="@{/houTai/orderEditForm(orderId=${order.orderid})}">Edit</a>
-                    <a th:href="@{/houTai/orderDeleteForm(orderId=${order.orderid})}">Delete</a>
+                    <a th:href="@{/houTai/orderView(orderId=${order.orderId})}">More</a>
+                    <a th:href="@{/houTai/orderEditForm(orderId=${order.orderId})}">Edit</a>
+                    <a th:href="@{/houTai/orderDeleteForm(orderId=${order.orderId})}">Delete</a>
                 </td>
             </tr>
         </table>

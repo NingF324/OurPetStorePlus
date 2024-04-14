@@ -5,7 +5,7 @@
 <mapper namespace="org.ningf.ourpetstore.persistence.SupplierMapper">
 
     <resultMap id="BaseResultMap" type="org.ningf.ourpetstore.entity.Supplier">
-            <id property="suppid" column="suppid" jdbcType="INTEGER"/>
+            <id property="supplierId" column="suppid" jdbcType="INTEGER"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="status" column="status" jdbcType="VARCHAR"/>
             <result property="addr1" column="addr1" jdbcType="VARCHAR"/>

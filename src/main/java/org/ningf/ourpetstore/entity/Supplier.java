@@ -17,8 +17,8 @@ public class Supplier implements Serializable {
     /**
      * 
      */
-    @TableId
-    private Integer suppid;
+    @TableId(value = "suppid")
+    private Integer supplierId;
 
     /**
      * 

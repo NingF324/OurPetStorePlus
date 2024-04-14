@@ -24,11 +24,11 @@
 
     </div>
     <div id="QuickLinks">
-        <a th:if="${session.account} != null" href="houTai/userManage">User Manage</a>
-        <img th:if="${session.account} != null" src="../images/separator.gif" />
-        <a th:if="${session.account} != null" href="houTai/categoryManage">Category Manage</a>
-        <img th:if="${session.account} != null" src="../images/separator.gif" />
-        <a th:if="${session.account} != null" href="houTai/orderManage">Order Manage</a>
+        <a href="/houTai/userManageForm">User Manage</a>
+        <img src="../images/separator.gif" />
+        <a href="/houTai/categoryManageForm">Category Manage</a>
+        <img src="../images/separator.gif" />
+        <a href="/houTai/orderManageForm">Order Manage</a>
     </div>
 </header>
 </body>

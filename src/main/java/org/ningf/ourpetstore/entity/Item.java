@@ -10,23 +10,23 @@ import java.math.BigDecimal;
 public class Item {
     @TableId(value = "itemid")
     private String itemId;
-    @TableField(value = "productid")
+    @TableField("productid")
     private String productId;
-    @TableField(value = "listprice")
+    @TableField("listprice")
     private BigDecimal listPrice;
-    @TableField(value = "unitcost")
+    @TableField("unitcost")
     private BigDecimal unitCost;
-    @TableField(value = "supplier")
+    @TableField("supplier")
     private int supplierId;
     private String status;
-    @TableField(value = "attr1")
+    @TableField("attr1")
     private String attribute1;
-    @TableField(value = "attr2")
+    @TableField("attr2")
     private String attribute2;
-    @TableField(value = "attr3")
+    @TableField("attr3")
     private String attribute3;
-    @TableField(value = "attr4")
+    @TableField("attr4")
     private String attribute4;
-    @TableField(value = "attr5")
+    @TableField("attr5")
     private String attribute5;
 }

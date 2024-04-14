@@ -11,7 +11,7 @@
     <div id="Catalog">
         <form action="/houTai/login" name="login_form" method="post">
             <p>Please enter your username and password.</p>
-                <p th:if="${session.signOnMsg != null}"> <font color="red">${session.signOnMsg} </font> </p>
+            <p th:if="${session.signOnMsg != null}"> <font color="red">${session.signOnMsg} </font> </p>
             <p>
                 Username:<input type="text" name="adminname"> <br />
                 Password:<input type="password" name="adminpassword">
