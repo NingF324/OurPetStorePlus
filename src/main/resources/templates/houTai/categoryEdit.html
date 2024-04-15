@@ -21,21 +21,20 @@
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><input type="text" name="description" th:value="${category.description}"/></td>
+                <td><input type="text" name="description" th:value="${category.description}" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td>Image:</td>
-                <td><input type="text" name="image" th:value="${category.image}"/></td>
+                <td><img type="text" name="image" th:src="'../'+${category.image}"/></td>
             </tr>
             <tr>
-                <td colspan="2" align="center">
+                <td >
                     <input type="submit" value="Update Category"/>
                 </td>
                 <td><input type="button" value="Cancel" onclick="history.back()"/></td>
             </tr>
         </table>
     </form>
-    <a href="categoryList">Return to Category List</a>
 </div>
 <footer th:replace="common/adminBottom"></footer>
 </body>

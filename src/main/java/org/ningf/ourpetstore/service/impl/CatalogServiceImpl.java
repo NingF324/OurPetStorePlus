@@ -69,8 +69,9 @@ public class CatalogServiceImpl implements CatalogService {
             cateVO.setCategoryId(category.getCategoryId());
             cateVO.setCategoryName(category.getCategoryName());
             String [] temp = category.getDescription().split("\"");
+            String [] temp1 = temp[6].split("</font>");
+            cateVO.setDescription(temp1[0].substring(1));
             cateVO.setImage(temp[1]);
-            cateVO.setDescription(temp[2].substring(1));
             // 其他属性的设置
             list.add(cateVO);
         }
