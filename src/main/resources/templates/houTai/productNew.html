@@ -42,6 +42,11 @@
 <script>
     document.getElementById('productId').addEventListener('blur', function () {
         let productId = this.value;
+        if(productId.length === 0){
+            document.getElementById('productIdError').innerText = 'Product ID cannot be empty';
+            document.getElementById('createProductBtn').disabled = true;
+            return;
+        }
         console.log('productId:', productId);
         axios.get('/houTai/checkProduct?productId=' + productId)
             .then(function (response) {

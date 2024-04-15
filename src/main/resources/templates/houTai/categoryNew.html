@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <td>Category Name:</td>
-                <td><input type="text" name="categoryName" value=""/></td>
+                <input type="text" name="categoryName" value=""/>
             </tr>
             <tr>
                 <td>Description:</td>
@@ -39,6 +39,11 @@
 <script>
    document.getElementById('categoryId').addEventListener('blur', function () {
         let categoryId = this.value;
+        if(categoryId.length === 0){
+            document.getElementById('categoryIdError').innerText = 'Category ID cannot be empty';
+            document.getElementById('createCategoryBtn').disabled = true;
+            return;
+        }
         console.log('categoryId:', categoryId); // 输出 categoryId 的值到控制台
         axios.get('/houTai/checkCategory?id=' + categoryId)
             .then(function (response) {

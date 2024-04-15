@@ -50,6 +50,11 @@
 <script>
   document.getElementById('itemId').addEventListener('blur', function () {
     let itemId = this.value;
+    if(itemId.length === 0){
+      document.getElementById('itemIdError').innerText = 'Item ID cannot be empty';
+      document.getElementById('createItemBtn').disabled = true;
+      return;
+    }
     console.log('itemId:', itemId);
     axios.get('/houTai/checkItem?itemId=' + itemId)
             .then(function (response) {

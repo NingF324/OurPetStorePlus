@@ -39,7 +39,7 @@ public class CatalogServiceImpl implements CatalogService {
         Category category = categoryMapper.selectById(categoryId);
 
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("category" , categoryId);
+        queryWrapper.eq("category" , categoryId).eq("isAvailable","Y");
         List<Product> productList = productMapper.selectList(queryWrapper);
         List<ProdVO> prodVOList = new ArrayList<>();
         for(Product product : productList) {
@@ -63,14 +63,17 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<CateVO> getAllCategories() {
         List<CateVO> list=new ArrayList<>();
-        List<Category> categoryList = categoryMapper.selectAllCategories();
+        QueryWrapper<Category> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("isAvailable","Y");
+        List<Category> categoryList = categoryMapper.selectList(queryWrapper);
         for (Category category : categoryList) {
             CateVO cateVO = new CateVO(); // 假设有一个方法将Category对象转换为CateVO对象
             cateVO.setCategoryId(category.getCategoryId());
             cateVO.setCategoryName(category.getCategoryName());
             String [] temp = category.getDescription().split("\"");
+            String [] temp1 = temp[6].split("</font>");
+            cateVO.setDescription(temp1[0].substring(1));
             cateVO.setImage(temp[1]);
-            cateVO.setDescription(temp[2].substring(1));
             // 其他属性的设置
             list.add(cateVO);
         }
@@ -86,10 +89,10 @@ public class CatalogServiceImpl implements CatalogService {
     public ProductVO getProduct(String productId) {
         ProductVO productVO = new ProductVO();
         Product product = productMapper.selectById(productId);
-        if (product != null) {
+        if (product != null&&product.getIsavailable().equals("Y")) {
             // 如果产品不为空，则继续处理
             QueryWrapper<Item> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("productid", productId);
+            queryWrapper.eq("productid", productId).eq("isavailable","Y");
             List<Item> itemList = itemMapper.selectList(queryWrapper);
             List<ItmVO> itmVOS= new ArrayList<>();
             for(Item item : itemList){
@@ -150,6 +153,7 @@ public class CatalogServiceImpl implements CatalogService {
         category.setCategoryName(categoryVO.getCategoryName());
         category.setDescription(categoryVO.getDescription());
         int insertResult = categoryMapper.insert(category);
+        insertResult =categoryMapper.updateById(category);
         if(insertResult>0){
             return true;
         }else {
@@ -163,9 +167,10 @@ public class CatalogServiceImpl implements CatalogService {
         QueryWrapper<Product> productQueryWrapper = new QueryWrapper<>();
         productQueryWrapper.eq("category", categoryId);
         List<Product> productList = productMapper.selectList(productQueryWrapper);
-
+        Category category = categoryMapper.selectById(categoryId);
+        category.setIsavailable("N");
         // 删除类别
-        int categoryDeleteResult = categoryMapper.deleteById(categoryId);
+        int categoryDeleteResult = categoryMapper.updateById(category);
         // 删除产品
         int productDeleteResult = productMapper.delete(productQueryWrapper);
         // 从产品列表中提取产品ID
@@ -229,15 +234,17 @@ public class CatalogServiceImpl implements CatalogService {
         QueryWrapper<Item> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("productid", productVO.getProductId());
         List<Item> itemList = itemMapper.selectList(queryWrapper);
-
+        for(Item item : itemList){
+            item.setIsavailable("N");
+            itemMapper.updateById(item);
+        }
         // 删除产品
-        int a = productMapper.deleteById(productVO.getProductId());
-
-        // 删除与产品相关的项目
-        int b = itemMapper.delete(queryWrapper);
+        Product product= productMapper.selectById(productVO.getProductId());
+        product.setIsavailable("N");
+        int a = productMapper.updateById(product);
 
         // 判断是否删除成功
-        if (a > 0 && b == itemList.size()) {
+        if (a > 0) {
             return true;
         } else {
             return false;
@@ -289,6 +296,7 @@ public class CatalogServiceImpl implements CatalogService {
         product.setProductName(productVO.getProductName());
         product.setDescription(productVO.getDescription());
         int insertResult = productMapper.insert(product);
+        insertResult = productMapper.updateById(product);
         if(insertResult>0){
             return true;
         }else {
@@ -299,7 +307,9 @@ public class CatalogServiceImpl implements CatalogService {
 
     @Override
     public boolean deleteItem(ItemVO itemVO) {
-        int a=itemMapper.deleteById(itemVO.getItemId());
+        Item item=itemMapper.selectById(itemVO.getItemId());
+        item.setIsavailable("N");
+        int a=itemMapper.updateById(item);
         if(a>0) return true;
         else return false;
     }
@@ -345,6 +355,7 @@ public class CatalogServiceImpl implements CatalogService {
         item.setSupplierId(itemVO.getSupplierId());
         item.setStatus(itemVO.getStatus());
         int insertResult = itemMapper.insert(item);
+        insertResult=itemMapper.updateById(item);
         if(insertResult>0){
             return true;
         }else {
@@ -356,7 +367,7 @@ public class CatalogServiceImpl implements CatalogService {
     public ProductVO searchItems(String keyword) {
         ProductVO productVO=new ProductVO();
         QueryWrapper<Item> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("itemid",keyword);
+        queryWrapper.like("itemid",keyword).eq("isavailable","Y");
         List<Item> itemList = itemMapper.selectList(queryWrapper);
         List<ItmVO> itmVOS= new ArrayList<>();
         for(Item item : itemList){

@@ -90,7 +90,7 @@ public class HoutaiServiceImpl implements HouTaiService {
     public UsersVO getUsers() {
         UsersVO usersVO = new UsersVO();
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("status", "OK");
+        queryWrapper.eq("status", "OK").eq("isAvailable","Y");
         QueryWrapper<Signon> queryWrapper_signon = new QueryWrapper<>();
         queryWrapper_signon.ne("username", "");
         List<Account> accountList = accountMapper.selectList(queryWrapper);
@@ -227,9 +227,10 @@ public class HoutaiServiceImpl implements HouTaiService {
 
     @Override
     public boolean deleteUser(String userId) {
-        int a= accountMapper.deleteById(userId);
-        int b= signonMapper.deleteById(userId);
-        return a>0&&b>0;
+        Account account= accountMapper.selectById(userId);
+        account.setIsavailable("N");
+        int a=accountMapper.updateById(account);
+        return a>0;
     }
 
     @Override
@@ -296,7 +297,9 @@ public class HoutaiServiceImpl implements HouTaiService {
 
         //执行插入操作
         int signonInsertResult = signonMapper.insert(signon);
+        signonInsertResult =signonMapper.updateById(signon);
         int accountInsertResult = accountMapper.insert(account);
+        accountInsertResult =accountMapper.updateById(account);
 
         // 判断插入操作是否成功
         if (signonInsertResult > 0 && accountInsertResult > 0) {

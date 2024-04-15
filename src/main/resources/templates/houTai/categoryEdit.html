@@ -21,22 +21,42 @@
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><input type="text" name="description" th:value="${category.description}"/></td>
+                <td><input type="text" name="description" th:value="${category.description}" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td>Image:</td>
-                <td><input type="text" name="image" th:value="${category.image}"/></td>
+                <td>
+                    <input type="file" id="imageInput" name="image" style="display: none;" accept="image/*"/>
+                    <button type="button" onclick="document.getElementById('imageInput').click()">Upload Image</button>
+                    <img id="imagePreview" th:src="'../'+${category.image}" alt="Image Preview" style="max-width: 200px; max-height: 200px;"/>
+                </td>
             </tr>
+
             <tr>
-                <td colspan="2" align="center">
+                <td >
                     <input type="submit" value="Update Category"/>
                 </td>
                 <td><input type="button" value="Cancel" onclick="history.back()"/></td>
             </tr>
         </table>
     </form>
-    <a href="categoryList">Return to Category List</a>
 </div>
 <footer th:replace="common/adminBottom"></footer>
 </body>
+<script>
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            document.getElementById('imagePreview').src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    // Event listener to trigger handleFileSelect when a file is selected
+    document.getElementById('imageInput').addEventListener('change', handleFileSelect);
+</script>
+
 </html>

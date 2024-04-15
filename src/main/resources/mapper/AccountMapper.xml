@@ -17,12 +17,14 @@
             <result property="zip" column="zip" jdbcType="VARCHAR"/>
             <result property="country" column="country" jdbcType="VARCHAR"/>
             <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="isavailable" column="isAvailable" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         userid,email,firstname,
         lastname,status,addr1,
         addr2,city,state,
-        zip,country,phone
+        zip,country,phone,
+        isAvailable
     </sql>
 </mapper>

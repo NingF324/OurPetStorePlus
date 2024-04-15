@@ -8,9 +8,11 @@
             <id property="categoryId" column="catid" jdbcType="VARCHAR"/>
             <result property="categoryName" column="name" jdbcType="VARCHAR"/>
             <result property="description" column="descn" jdbcType="VARCHAR"/>
+            <result property="isavailable" column="isAvailable" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        catid,name,descn
+        catid,name,descn,
+        isAvailable
     </sql>
 </mapper>

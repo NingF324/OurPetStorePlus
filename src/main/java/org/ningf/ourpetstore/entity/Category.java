@@ -14,4 +14,5 @@ public class Category {
     private String categoryName;
     @TableField("descn")
     private String description;
+    private String isavailable;
 }

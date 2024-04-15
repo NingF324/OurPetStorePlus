@@ -78,6 +78,11 @@
 <script>
     document.getElementById('userId').addEventListener('blur', function () {
         let userId = this.value;
+        if(userId.length === 0){
+            document.getElementById('userIdError').innerText = 'User ID cannot be empty';
+            document.getElementById('createUserBtn').disabled = true;
+            return;
+        }
         console.log('userId:', userId);
         axios.get('/houTai/checkUser?userId=' + userId)
             .then(function (response) {

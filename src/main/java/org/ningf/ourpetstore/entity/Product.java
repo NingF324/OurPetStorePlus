@@ -14,4 +14,6 @@ public class Product {
     private String productName;
     @TableField("descn")
     private String description;
+
+    private String isavailable;
 }

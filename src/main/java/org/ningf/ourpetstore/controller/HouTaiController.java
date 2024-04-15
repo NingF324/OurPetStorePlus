@@ -90,8 +90,9 @@ public class HouTaiController {
         cateVO.setCategoryId(categoryVO.getCategoryId());
         cateVO.setCategoryName(categoryVO.getCategoryName());
         String [] temp = categoryVO.getDescription().split("\"");
+        String [] temp1 = temp[6].split("</font>");
+        cateVO.setDescription(temp1[0].substring(1));
         cateVO.setImage(temp[1]);
-        cateVO.setDescription(temp[2].substring(1));
         model.addAttribute("category", cateVO);
         return "houTai/categoryEdit";
     }
@@ -111,7 +112,14 @@ public class HouTaiController {
     @GetMapping("categoryDeleteForm")
     public String categoryDeleteForm(String categoryId, Model model) {
         CategoryVO categoryVO = catalogService.getCategory(categoryId);
-        model.addAttribute("category", categoryVO);
+        CateVO cateVO= new CateVO();
+        cateVO.setCategoryId(categoryVO.getCategoryId());
+        cateVO.setCategoryName(categoryVO.getCategoryName());
+        String [] temp = categoryVO.getDescription().split("\"");
+        String [] temp1 = temp[6].split("</font>");
+        cateVO.setDescription(temp1[0].substring(1));
+        cateVO.setImage(temp[1]);
+        model.addAttribute("category", cateVO);
         return "houTai/categoryDelete";
     }
 

@@ -9,10 +9,11 @@
             <result property="categoryId" column="category" jdbcType="VARCHAR"/>
             <result property="productName" column="name" jdbcType="VARCHAR"/>
             <result property="description" column="descn" jdbcType="VARCHAR"/>
+            <result property="isavailable" column="isAvailable" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         productid,category,name,
-        descn
+        descn,isAvailable
     </sql>
 </mapper>

@@ -29,4 +29,5 @@ public class Item {
     private String attribute4;
     @TableField("attr5")
     private String attribute5;
+    private String isavailable;
 }

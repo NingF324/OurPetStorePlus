@@ -12,16 +12,17 @@
             <result property="supplierId" column="supplier" jdbcType="INTEGER"/>
             <result property="status" column="status" jdbcType="VARCHAR"/>
             <result property="attribute1" column="attr1" jdbcType="VARCHAR"/>
-            <result property="attribute1" column="attr2" jdbcType="VARCHAR"/>
-            <result property="attribute1" column="attr3" jdbcType="VARCHAR"/>
-            <result property="attribute1" column="attr4" jdbcType="VARCHAR"/>
-            <result property="attribute1" column="attr5" jdbcType="VARCHAR"/>
+            <result property="attribute2" column="attr2" jdbcType="VARCHAR"/>
+            <result property="attribute3" column="attr3" jdbcType="VARCHAR"/>
+            <result property="attribute4" column="attr4" jdbcType="VARCHAR"/>
+            <result property="attribute5" column="attr5" jdbcType="VARCHAR"/>
+            <result property="isavailable" column="isAvailable" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         itemid,productid,listprice,
         unitcost,supplier,status,
         attr1,attr2,attr3,
-        attr4,attr5
+        attr4,attr5,isAvailable
     </sql>
 </mapper>
