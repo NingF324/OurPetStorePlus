@@ -2,18 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create User</title>
     <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <header th:replace="common/userTop"></header>
 <div id="Content">
     <h2>Create User</h2>
-    <form action="/houTai/userCreate" method="post">
+    <form action="/houTai/userCreate" method="post" id="userForm">
         <table>
             <tr>
                 <td>User ID:</td>
-                <td><input type="text" name="userId" value=""/></td>
+                <td><input type="text" name="userId" id="userId" /></td>
+                <td><span id="userIdError" style="color: red;"></span></td>
             </tr>
             <tr>
                 <td>First Name:</td>
@@ -65,12 +67,32 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Create User"/>
+                    <input type="submit" value="Create User" id="createUserBtn"/>
                 </td>
             </tr>
         </table>
     </form>
 </div>
 <footer th:replace="common/adminBottom"></footer>
+
+<script>
+    document.getElementById('userId').addEventListener('blur', function () {
+        let userId = this.value;
+        console.log('userId:', userId);
+        axios.get('/houTai/checkUser?userId=' + userId)
+            .then(function (response) {
+                if (response.data.exists) {
+                    document.getElementById('userIdError').innerText = 'User ID already exists';
+                    document.getElementById('createUserBtn').disabled = true;
+                } else {
+                    document.getElementById('userIdError').innerText = '';
+                    document.getElementById('createUserBtn').disabled = false;
+                }
+            })
+            .catch(function (error) {
+                console.error('Error checking user ID:', error);
+            });
+    });
+</script>
 </body>
 </html>

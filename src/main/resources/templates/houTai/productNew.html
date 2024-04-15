@@ -2,18 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Item Manage</title>
+    <title>Product Manage</title>
     <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <header th:replace="common/adminTop"></header>
 <div id="Content">
     <h2>Create Product</h2>
-    <form action="/houTai/productCreate" method="post">
+    <form action="/houTai/productCreate" method="post" id="productForm">
         <table>
             <tr>
                 <td>Product ID:</td>
-                <td><input type="text" name="productId" value=""/></td>
+                <td><input type="text" name="productId" id="productId" /></td>
+                <td><span id="productIdError" style="color: red;"></span></td>
             </tr>
             <tr>
                 <td>Category ID:</td>
@@ -29,12 +31,32 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Create Product"/>
+                    <input type="submit" value="Create Product" id="createProductBtn"/>
                 </td>
             </tr>
         </table>
     </form>
 </div>
 <footer th:replace="common/adminBottom"></footer>
+
+<script>
+    document.getElementById('productId').addEventListener('blur', function () {
+        let productId = this.value;
+        console.log('productId:', productId);
+        axios.get('/houTai/checkProduct?productId=' + productId)
+            .then(function (response) {
+                if (response.data.exists) {
+                    document.getElementById('productIdError').innerText = 'Product ID already exists';
+                    document.getElementById('createProductBtn').disabled = true;
+                } else {
+                    document.getElementById('productIdError').innerText = '';
+                    document.getElementById('createProductBtn').disabled = false;
+                }
+            })
+            .catch(function (error) {
+                console.error('Error checking product ID:', error);
+            });
+    });
+</script>
 </body>
 </html>

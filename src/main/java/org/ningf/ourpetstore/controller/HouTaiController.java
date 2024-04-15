@@ -4,6 +4,7 @@ import org.ningf.ourpetstore.entity.Orders;
 import org.ningf.ourpetstore.entity.Orderstatus;
 import org.ningf.ourpetstore.persistence.ItemQuantityMapper;
 import org.ningf.ourpetstore.persistence.OrderstatusMapper;
+import org.ningf.ourpetstore.persistence.ProductMapper;
 import org.ningf.ourpetstore.service.CatalogService;
 import org.ningf.ourpetstore.service.HouTaiService;
 import org.ningf.ourpetstore.vo.*;
@@ -30,6 +31,9 @@ public class HouTaiController {
     private ItemQuantityMapper itemQuantityMapper;
     @Autowired
     private OrderstatusMapper orderstatusMapper;
+
+    @Autowired
+    private ProductMapper productMapper;
 
     @GetMapping("loginForm")
     public String loginForm() {
@@ -390,7 +394,8 @@ public class HouTaiController {
     }
 
     @GetMapping("itemNewForm")
-    public String itemNewForm() {
+    public String itemNewForm(Model model,String productId) {
+        model.addAttribute("productId",productId);
         return "houTai/itemNew";
     }
 

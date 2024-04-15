@@ -41,7 +41,7 @@
             </td>
         </tr>
     </table>
-    <a th:href="@{/houTai/itemNewForm}">New Item</a>
+    <a th:href="@{/houTai/itemNewForm(productId=${product.productId})}">New Item</a>
 </div>
 </div>
 <footer th:replace="common/adminBottom"></footer>

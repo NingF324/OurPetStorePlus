@@ -4,20 +4,22 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <link rel="StyleSheet" href="../css/ourpetstore.css" type="text/css" media="screen"/>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <header th:replace="common/adminTop"></header>
 <div id="Content">
   <h2>Create Item</h2>
-  <form action="/houTai/itemCreate" method="post">
+  <form action="/houTai/itemCreate" method="post" id="itemForm">
     <table>
       <tr>
         <td>Item ID:</td>
-        <td><input type="text" name="itemId" value="" /></td>
+        <td><input type="text" name="itemId" id="itemId" /></td>
+        <td><span id="itemIdError" style="color: red;"></span></td>
       </tr>
       <tr>
         <td>Product ID:</td>
-        <td><input type="text" name="productId" value="" /></td>
+        <td><input type="text" name="productId" th:value="${productId}" /></td>
       </tr>
       <tr>
         <td>List Price:</td>
@@ -37,12 +39,32 @@
       </tr>
       <tr>
         <td colspan="2" align="center">
-          <input type="submit" value="Create Item"/>
+          <input type="submit" value="Create Item" id="createItemBtn"/>
         </td>
       </tr>
     </table>
-    </form>
+  </form>
 </div>
 <footer th:replace="common/adminBottom"></footer>
+
+<script>
+  document.getElementById('itemId').addEventListener('blur', function () {
+    let itemId = this.value;
+    console.log('itemId:', itemId);
+    axios.get('/houTai/checkItem?itemId=' + itemId)
+            .then(function (response) {
+              if (response.data.exists) {
+                document.getElementById('itemIdError').innerText = 'Item ID already exists';
+                document.getElementById('createItemBtn').disabled = true;
+              } else {
+                document.getElementById('itemIdError').innerText = '';
+                document.getElementById('createItemBtn').disabled = false;
+              }
+            })
+            .catch(function (error) {
+              console.error('Error checking item ID:', error);
+            });
+  });
+</script>
 </body>
 </html>
